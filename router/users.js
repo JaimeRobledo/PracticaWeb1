@@ -6,6 +6,6 @@ userRouter.use(express.json());
 
 userRouter.get('/', getItems);
 
-userRouter.post('/', createItem);
+userRouter.post('/register', createItem);
 
 module.exports = userRouter;
