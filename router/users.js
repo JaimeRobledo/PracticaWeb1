@@ -1,10 +1,13 @@
 const express = require('express');
+const {getItems} = require('../controlers/users.js');
 const userRouter = express.Router();
 
 userRouter.use(express.json());
 
-userRouter.get('/', (req, res) => {
-    res.send("GET de users")
+userRouter.get('/', getItems);
+
+userRouter.post('/', (req, res) => {
+    res.send("POST de users")
 }
 );
 

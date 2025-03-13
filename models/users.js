@@ -46,7 +46,11 @@ codigo_validacion:{
 estado:{
     type: Boolean,
     default: false
-}
+},
+bloqueado: {
+  type: Boolean, // Se bloqueará tras 3 intentos fallidos
+  default: false,
+},
 },
 {
 timestamps: true, // TODO createdAt, updatedAt
