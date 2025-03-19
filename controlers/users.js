@@ -1,6 +1,6 @@
 const userModel = require('../models/users.js')
 const {encrypt} = require('../utils/validatePassword.js')
-const {tokenSign} = require('../utils/encargarseJwt.js')
+const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
 
 const getItems = async (req, res) => {
     const result = await userModel.find()
@@ -44,5 +44,43 @@ const createItem = async (req, res) => {
 }
 
 const validateItem = async (req, res) => {
+    console.log("Body recibido:", req.body);
+    const {codigo_validacion} = req.body
+    console.log("Codigo de validación recibido:", codigo_validacion)
+
+    if (!req.headers.authorization) {
+        handleHttpError(res, "NOT_TOKEN", 401)
+        return
+    }
+    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
+    const token = req.headers.authorization.split(' ').pop()
+    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
+    const dataToken = await verifyToken(token)
+    console.log(dataToken)
+    if(!dataToken) {
+        handleHttpError(res, "INVALID_TOKEN", 401)
+        return
+    }
+
+    const user = await userModel.findOne({_id: dataToken._id})
+    if (!user) {
+        return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    if (user.estado) {
+        return res.status(400).json({ message: "Usuario ya validado" });
+    }
+
+    console.log("Usuario:", user.email, user.codigo_validacion, user.estado)
+
+    if (user.codigo_validacion !== codigo_validacion) {
+        return res.status(400).json({ message: "Código de validación incorrecto" });
+    }
+
+    user.estado = true
+    await user.save()
+    res.status(201).json({message: "Usuario validado correctamente"})
+   
+}
 
 module.exports = { getItems, createItem, validateItem }

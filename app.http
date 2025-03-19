@@ -6,15 +6,16 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-    "email": "user5@gmail.com",
+    "email": "user0@gmail.com",
     "password": "1234567890"
 }
 
 ###
 
 POST http://localhost:3000/api/users/validate
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGY0NzBmYzU5MzA4NTI5NzkyMGQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQyMzc2Nzc1LCJleHAiOjE3NDIzODM5NzV9.ig9GXEywaCaeBap3CoPR9De_PTwy5wGXbgxJbvix1Og
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhY2ZiMTQ0YjIwOTg1YjcxNjE0ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQyMzkzMjY1LCJleHAiOjE3NDI0MDA0NjV9.lm402YXHM6OBos3km0gSNObYjBDlOf-hhVmAPqpne7s
 
 {
-  "code": "245048"
+    "codigo_validacion": "802644"
 }
