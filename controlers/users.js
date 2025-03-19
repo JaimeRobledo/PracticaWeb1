@@ -1,5 +1,6 @@
 const userModel = require('../models/users.js')
 const {encrypt} = require('../utils/validatePassword.js')
+const {tokenSign} = require('../utils/encargarseJwt.js')
 
 const getItems = async (req, res) => {
     const result = await userModel.find()
@@ -28,13 +29,18 @@ const createItem = async (req, res) => {
 
     });
 
+    const token = tokenSign(result)
 
-    console.log("User creado", result.email, result.role, result.estado);
+    console.log("User creado", result.email, result.role, result.estado, token);
     res.status(201).json({
         email: result.email,
         role: result.role,
-        estado: result.estado
+        estado: result.estado,
+        token
         });
+
+
+
 }
 
 module.exports = { getItems, createItem }
