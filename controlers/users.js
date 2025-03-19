@@ -43,4 +43,6 @@ const createItem = async (req, res) => {
 
 }
 
-module.exports = { getItems, createItem }
+const validateItem = async (req, res) => {
+
+module.exports = { getItems, createItem, validateItem }
