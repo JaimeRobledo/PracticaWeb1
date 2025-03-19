@@ -13,4 +13,12 @@ const validatorRegister = [
 
 ]
 
-module.exports = { validatorRegister }
+const validatorCodigo=[
+    check("codigo_validacion").exists().notEmpty().isLength( {min:6, max: 6} ),
+    (req, res, next) => {
+        return validateResults(req, res, next)
+    }
+
+]
+
+module.exports = { validatorRegister, validatorCodigo }

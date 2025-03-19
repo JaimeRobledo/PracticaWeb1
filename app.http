@@ -6,6 +6,15 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-    "email": "user4@gmail.com",
+    "email": "user5@gmail.com",
     "password": "1234567890"
+}
+
+###
+
+POST http://localhost:3000/api/users/validate
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGY0NzBmYzU5MzA4NTI5NzkyMGQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQyMzc2Nzc1LCJleHAiOjE3NDIzODM5NzV9.ig9GXEywaCaeBap3CoPR9De_PTwy5wGXbgxJbvix1Og
+
+{
+  "code": "245048"
 }
