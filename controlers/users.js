@@ -29,8 +29,12 @@ const createItem = async (req, res) => {
     });
 
 
-    console.log("User creado", result)
-    res.status(201).json(result)
+    console.log("User creado", result.email, result.role, result.estado);
+    res.status(201).json({
+        email: result.email,
+        role: result.role,
+        estado: result.estado
+        });
 }
 
 module.exports = { getItems, createItem }
