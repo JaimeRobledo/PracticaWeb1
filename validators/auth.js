@@ -32,4 +32,16 @@ const validatorLogin= [
 
 ]
 
-module.exports = { validatorRegister, validatorCodigo, validatorLogin }
+const validatorDatosPersonales = [
+
+    check("email").exists().notEmpty().isEmail(),
+    check("password").exists().notEmpty().isLength( {min:8, max: 16} ),
+    check("nif").exists().notEmpty().isLength( {min:9, max: 9} ).isAlphanumeric(),
+    
+    (req, res, next) => {
+        return validateResults(req, res, next)
+    }
+
+]
+
+module.exports = { validatorRegister, validatorCodigo, validatorLogin, validatorDatosPersonales }
