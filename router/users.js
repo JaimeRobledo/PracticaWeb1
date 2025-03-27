@@ -1,6 +1,6 @@
 const express = require('express');
-const {getItems, createItem, validateItem} = require('../controlers/users.js');
-const { validatorRegister, validatorCodigo } = require('../validators/auth.js');
+const {getItems, createItem, validateItem, loginItem} = require('../controlers/users.js');
+const { validatorRegister, validatorCodigo, validatorLogin } = require('../validators/auth.js');
 const userRouter = express.Router();
 
 userRouter.use(express.json());

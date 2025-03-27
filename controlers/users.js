@@ -111,7 +111,7 @@ const loginItem = async (req, res) => {
 
     const token = tokenSign(user)
 
-    res.status(201).json({message: "Usuario logueado correctamente", token})
+    res.status(201).json({message: "Usuario logueado correctamente",user, token})
 }
 
 module.exports = { getItems, createItem, validateItem, loginItem }

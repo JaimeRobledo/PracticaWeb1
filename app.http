@@ -19,3 +19,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjQ5Z
 {
     "codigo_validacion": "194653"
 }
+
+###
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "user1@gmail.com",
+    "password": "1234567890"
+}
