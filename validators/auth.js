@@ -34,10 +34,10 @@ const validatorLogin= [
 
 const validatorDatosPersonales = [
 
-    check("email").exists().notEmpty().isEmail(),
-    check("password").exists().notEmpty().isLength( {min:8, max: 16} ),
+    check("nombre").exists().notEmpty(),
+    check("apellidos").exists().notEmpty(),
     check("nif").exists().notEmpty().isLength( {min:9, max: 9} ).isAlphanumeric(),
-    
+
     (req, res, next) => {
         return validateResults(req, res, next)
     }

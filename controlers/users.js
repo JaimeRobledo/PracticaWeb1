@@ -135,10 +135,7 @@ const updateDatosPersonales = async (req, res) => {
         return res.status(404).json({ message: "Usuario no encontrado" });
     
     }
-
-
-    await user.save()
-    res.status(201).json({message: "Usuario logueado correctamente",user, token})
+    res.status(201).json({message: "Usuario actualizado correctamente:",user, nombre, apellidos, nif})
 
 }
 
