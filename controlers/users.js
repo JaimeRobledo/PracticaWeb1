@@ -114,4 +114,4 @@ const loginItem = async (req, res) => {
     res.status(201).json({message: "Usuario logueado correctamente",user, token})
 }
 
-module.exports = { getItems, createItem, validateItem, loginItem }
+module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales }

@@ -28,3 +28,14 @@ Content-Type: application/json
     "email": "user1@gmail.com",
     "password": "1234567890"
 }
+
+###
+PUT http://localhost:3000/api/users/actualizarDatosPersonales
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjQ5ZDJhNTU3YTYyOTc5ZjBkMGEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDcwMzY1LCJleHAiOjE3NDMwNzc1NjV9.sMxRcg8fAXuICfKiNsfOghwzBpKWZ5bwuGUCunSO4ZQ
+
+{
+    "email": "user1@gmail.com",
+    "password": "1234567890",
+    "nif": "12345678A",
+}

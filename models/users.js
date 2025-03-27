@@ -24,43 +24,51 @@ si se equivoca 3 veces, se le bloquea la cuenta
 
 const mongoose = require("mongoose")
 const UserScheme = new mongoose.Schema(
- {
- email: {
- type: String,
- unique: true,
- required: true
- },
- password:{
- type: String // TODO Guardaremos el hash
- },
- nif:{
- type: String,
- unique: true,
- required: true
- },
- role:{
- type: ["user", "admin"], // es el enum de SQL
- default: "user"
- },
-intentos:{
-    type: Number,
-    default: 0
-},
-codigo_validacion:{
-    type: String,
-},
-estado:{
-    type: Boolean,
-    default: false
-},
-bloqueado: {
-  type: Boolean, // Se bloqueará tras 3 intentos fallidos
-  default: false,
-},
-},
 {
-timestamps: true, // TODO createdAt, updatedAt
-versionKey: false
-}
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    password:{
+        type: String // TODO Guardaremos el hash
+    },
+    nombre:{
+        type: String,
+        required: true
+    },
+    apellidos:{
+        type: String,
+        required: true
+    },
+    nif:{
+        type: String,
+        unique: true,
+        required: true
+    },
+    role:{
+        type: ["user", "admin"], // es el enum de SQL
+        default: "user"
+    },
+    intentos:{
+        type: Number,
+        default: 0
+    },
+    codigo_validacion:{
+        type: String,
+    },
+    estado:{
+        type: Boolean,
+        default: false
+    },
+    bloqueado: {
+        type: Boolean, // Se bloqueará tras 3 intentos fallidos
+        default: false,
+    },
+    },
+    {
+        timestamps: true, // TODO createdAt, updatedAt
+        versionKey: false
+    }
 )
 module.exports = mongoose.model("users", UserScheme) // “users” es el nombre de la colección en mongoDB (o de la tabla en SQL)
