@@ -11,4 +11,6 @@ userRouter.post('/register', validatorRegister ,createItem);
 
 userRouter.post('/validate', validatorCodigo ,validateItem);
 
+userRouter.post('/login', validatorLogin ,loginItem);
+
 module.exports = userRouter;

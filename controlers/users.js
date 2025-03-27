@@ -1,5 +1,5 @@
 const userModel = require('../models/users.js')
-const {encrypt} = require('../utils/validatePassword.js')
+const {encrypt, compare} = require('../utils/validatePassword.js')
 const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
 
 const getItems = async (req, res) => {
@@ -83,4 +83,35 @@ const validateItem = async (req, res) => {
    
 }
 
-module.exports = { getItems, createItem, validateItem }
+const loginItem = async (req, res) => {
+    const {email, password} = req.body
+
+    const user = await userModel.findOne({email})
+    if (!user) {
+        return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    if (!user.estado) {
+        return res.status(400).json({ message: "Usuario no validado" });
+    }
+
+    if (user.bloqueado) {
+        return res.status(400).json({ message: "Usuario bloqueado" });
+    }
+
+    const passwordMatch = await compare(password, user.password)
+    if (!passwordMatch) {
+        user.intentos++
+        if (user.intentos >= 3) {
+            user.bloqueado = true
+        }
+        await user.save()
+        return res.status(400).json({ message: "Contraseña incorrecta" });
+    }
+
+    const token = tokenSign(user)
+
+    res.status(201).json({message: "Usuario logueado correctamente", token})
+}
+
+module.exports = { getItems, createItem, validateItem, loginItem }
