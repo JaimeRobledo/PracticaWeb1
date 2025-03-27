@@ -33,6 +33,11 @@ const UserScheme = new mongoose.Schema(
  password:{
  type: String // TODO Guardaremos el hash
  },
+ nif:{
+ type: String,
+ unique: true,
+ required: true
+ },
  role:{
  type: ["user", "admin"], // es el enum de SQL
  default: "user"
