@@ -46,6 +46,25 @@ const UserScheme = new mongoose.Schema(
         unique: true,
         required: true
     },
+    autonomo:{
+        type: Boolean,
+        default: false
+    },
+    company: {
+        name: {
+            type: String,
+            required: true
+        },
+        cif: {
+            type: String,
+            unique: true,
+            required: true
+        },
+        adress:{
+            type: String,
+            required: true
+        }
+    },
     role:{
         type: ["user", "admin"], // es el enum de SQL
         default: "user"

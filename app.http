@@ -39,3 +39,27 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjQ5Z
     "apellidos": "Robledo Sanchez",
     "nif": "12345678A"
 }
+
+###
+PUT http://localhost:3000/api/users/actualizarDatosCompany
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjQ5ZDJhNTU3YTYyOTc5ZjBkMGEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDcwMzY1LCJleHAiOjE3NDMwNzc1NjV9.sMxRcg8fAXuICfKiNsfOghwzBpKWZ5bwuGUCunSO4ZQ
+
+{
+  "address": {
+    "street": "Carlos V",
+    "number": 22,
+    "postal": 28936,
+    "city": "Móstoles",
+    "province": "Madrid"
+  },
+  "company": {
+    "name": "SERVITOP, SL",
+    "cif": "BXXXXXXXX",
+    "street": "Carlos V",
+    "number": 22,
+    "postal": 28936,
+    "city": "Móstoles",
+    "province": "Madrid"
+}
+}

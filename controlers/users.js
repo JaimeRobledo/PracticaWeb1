@@ -139,4 +139,10 @@ const updateDatosPersonales = async (req, res) => {
 
 }
 
+const updateDatosCompany = async (req, res) => {
+
+    
+
+}
+
 module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales }

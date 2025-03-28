@@ -44,4 +44,13 @@ const validatorDatosPersonales = [
 
 ]
 
+const validatorDatosCompany = [
+
+
+    (req, res, next) => {
+        return validateResults(req, res, next)
+    }
+
+]
+
 module.exports = { validatorRegister, validatorCodigo, validatorLogin, validatorDatosPersonales }
