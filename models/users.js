@@ -34,17 +34,14 @@ const UserScheme = new mongoose.Schema(
         type: String // TODO Guardaremos el hash
     },
     nombre:{
-        type: String,
-        required: true
+        type: String
     },
     apellidos:{
-        type: String,
-        required: true
+        type: String
     },
     nif:{
         type: String,
-        unique: true,
-        required: true
+        unique: true
     },
     autonomo:{
         type: Boolean,
@@ -52,17 +49,14 @@ const UserScheme = new mongoose.Schema(
     },
     company: {
         name: {
-            type: String,
-            required: true
+            type: String
         },
         cif: {
             type: String,
-            unique: true,
-            required: true
+            unique: true
         },
         address:{
-            type: String,
-            required: true
+            type: String
         }
     },
     role:{

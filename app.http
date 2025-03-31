@@ -6,7 +6,7 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-    "email": "user2@gmail.com",
+    "email": "user1@gmail.com",
     "password": "1234567890"
 }
 
@@ -14,10 +14,10 @@ Content-Type: application/json
 
 POST http://localhost:3000/api/users/validate
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjQ5ZDJhNTU3YTYyOTc5ZjBkMGEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDcwMzY1LCJleHAiOjE3NDMwNzc1NjV9.sMxRcg8fAXuICfKiNsfOghwzBpKWZ5bwuGUCunSO4ZQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDMzOTg1LCJleHAiOjE3NDM0NDExODV9.c92pKlOOv81vJWHetFoDHRbM3xzXwQQBeHwvTqwCfWU
 
 {
-    "codigo_validacion": "194653"
+    "codigo_validacion": "283749"
 }
 
 ###
@@ -32,7 +32,7 @@ Content-Type: application/json
 ###
 PUT http://localhost:3000/api/users/actualizarDatosPersonales
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjQ5ZDJhNTU3YTYyOTc5ZjBkMGEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDcwMzY1LCJleHAiOjE3NDMwNzc1NjV9.sMxRcg8fAXuICfKiNsfOghwzBpKWZ5bwuGUCunSO4ZQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDMzOTg1LCJleHAiOjE3NDM0NDExODV9.c92pKlOOv81vJWHetFoDHRbM3xzXwQQBeHwvTqwCfWU
 
 {
     "nombre": "Jaime",
@@ -43,21 +43,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjQ5Z
 ###
 PUT http://localhost:3000/api/users/actualizarDatosCompany
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjQ5ZDJhNTU3YTYyOTc5ZjBkMGEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDcwMzY1LCJleHAiOjE3NDMwNzc1NjV9.sMxRcg8fAXuICfKiNsfOghwzBpKWZ5bwuGUCunSO4ZQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDMzOTg1LCJleHAiOjE3NDM0NDExODV9.c92pKlOOv81vJWHetFoDHRbM3xzXwQQBeHwvTqwCfWU
 
 {
   "autonomo": false,
   "company": {
         "name": "SERVITOP, SL",
         "cif": "BXXXXXXXX",
-        "address": "Carlos V",
+        "address": "Carlos V"
     }
 }
 
 ###
 PUT http://localhost:3000/api/users/actualizarDatosCompany
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjQ5ZDJhNTU3YTYyOTc5ZjBkMGEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDcwMzY1LCJleHAiOjE3NDMwNzc1NjV9.sMxRcg8fAXuICfKiNsfOghwzBpKWZ5bwuGUCunSO4ZQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDMzOTg1LCJleHAiOjE3NDM0NDExODV9.c92pKlOOv81vJWHetFoDHRbM3xzXwQQBeHwvTqwCfWU
 
 {
   "autonomo": true,
