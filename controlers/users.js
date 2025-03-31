@@ -251,10 +251,55 @@ const recuperarPassword = async (req, res) => {
     
     console.log("Codigo de recuperacion:",codigo_recuperacion)  
 
+
+
+}
+
+const invitarGuest = async (req, res) => {
+    if (!req.headers.authorization) {
+        handleHttpError(res, "NOT_TOKEN", 401)
+        return
+    }
+    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
+    const token = req.headers.authorization.split(' ').pop()
+    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
+    const dataToken = await verifyToken(token)
+    console.log(dataToken)
+    if(!dataToken) {
+        handleHttpError(res, "INVALID_TOKEN", 401)
+        return
+    }
+
+    const user = await userModel.findOne({_id: dataToken._id})
+    if (!user) {
+        return res.status(404).json({ message: "Usuario Host no encontrado" });
     
+    }
+
+    const {email} = req.body
+    const usuarioExistente = await userModel.findOne({email})
+    if(usuarioExistente){
+        return res.status(409).json({message: "Guest ya existe"})
+    }
+
+    const codigo_validacion = Math.floor(100000 + Math.random() * 900000).toString();
+
+    const result = await userModel.create({
+        email,
+        codigo_validacion,
+        estado: false,
+        role: "guest"
+    });
+
+    console.log("User invitado", result.email, result.role, result.estado);
+    res.status(201).json({
+        email: result.email,
+        role: result.role,
+        estado: result.estado
+        });
 
 }
     
 
 
-module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword }
+module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, invitarGuest }

@@ -1,5 +1,5 @@
 const express = require('express');
-const {getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword} = require('../controlers/users.js');
+const {getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, invitarGuest} = require('../controlers/users.js');
 const { validatorRegister, validatorCodigo, validatorLogin, validatorDatosPersonales, validatorDatosCompany} = require('../validators/auth.js');
 const userRouter = express.Router();
 
@@ -21,6 +21,8 @@ userRouter.get('/porJWT', getPorJWT)
 
 userRouter.delete('/deleteUser', deleteUser);
 
-userRouter.post('/recuperarPassword',recuperarPassword);
+userRouter.put('/recuperarPassword',recuperarPassword);
+
+userRouter.post('/invitar',invitarGuest);
 
 module.exports = userRouter;
