@@ -6,7 +6,7 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-    "email": "user1@gmail.com",
+    "email": "user2@gmail.com",
     "password": "1234567890"
 }
 
@@ -72,3 +72,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwM
 GET http://localhost:3000/api/users/porJWT
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDMzOTg1LCJleHAiOjE3NDM0NDExODV9.c92pKlOOv81vJWHetFoDHRbM3xzXwQQBeHwvTqwCfWU
+
+###
+DELETE http://localhost:3000/api/users/deleteUser?soft=true
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjY3ZGYyZTE1YzViMDY3ZGE0MjYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM1Mzg5LCJleHAiOjE3NDM0NDI1ODl9.Dbsy7BV3JBco7kMFjCVOprhwwW7k1hxeEAFiczyBuSg
+
+###
+DELETE http://localhost:3000/api/users/deleteUser?soft=false
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjY3ZGYyZTE1YzViMDY3ZGE0MjYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM1Mzg5LCJleHAiOjE3NDM0NDI1ODl9.Dbsy7BV3JBco7kMFjCVOprhwwW7k1hxeEAFiczyBuSg
