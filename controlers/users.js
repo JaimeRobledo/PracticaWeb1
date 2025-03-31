@@ -239,4 +239,22 @@ const deleteUser = async (req, res) => {
 
 }
 
-module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser }
+const recuperarPassword = async (req, res) => {
+
+    const {email} = req.body
+    const user = await userModel.findOne({email})
+    if (!user) {
+        return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+    const codigo_recuperacion = Math.floor(100000 + Math.random() * 900000).toString();
+    await userModel.updateOne({email}, {codigo_recuperacion})
+    
+    console.log("Codigo de recuperacion:",codigo_recuperacion)  
+
+    
+
+}
+    
+
+
+module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword }

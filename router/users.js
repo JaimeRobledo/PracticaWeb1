@@ -1,5 +1,5 @@
 const express = require('express');
-const {getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser} = require('../controlers/users.js');
+const {getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword} = require('../controlers/users.js');
 const { validatorRegister, validatorCodigo, validatorLogin, validatorDatosPersonales, validatorDatosCompany} = require('../validators/auth.js');
 const userRouter = express.Router();
 
@@ -20,5 +20,7 @@ userRouter.put('/actualizarDatosCompany', validatorDatosCompany ,updateDatosComp
 userRouter.get('/porJWT', getPorJWT)
 
 userRouter.delete('/deleteUser', deleteUser);
+
+userRouter.post('/recuperarPassword',recuperarPassword);
 
 module.exports = userRouter;
