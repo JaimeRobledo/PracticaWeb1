@@ -47,7 +47,7 @@ const validatorDatosPersonales = [
 const validatorDatosCompany = [
     check("company.name").exists().notEmpty(),
     check("company.cif").exists().notEmpty().isLength( {min:9, max: 9} ).isAlphanumeric(),
-    check("company.adress").exists().notEmpty(),
+    check("company.address").exists().notEmpty(),
     check("company.autonomo").optional().notEmpty().isBoolean(),
 
 

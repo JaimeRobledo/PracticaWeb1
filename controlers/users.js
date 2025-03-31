@@ -141,7 +141,7 @@ const updateDatosPersonales = async (req, res) => {
 
 const updateDatosCompany = async (req, res) => {
 
-    const {autonomo, name, cif, adress} = req.body
+    const { autonomo, company } = req.body;
     if (!req.headers.authorization) {
         handleHttpError(res, "NOT_TOKEN", 401)
         return
@@ -156,13 +156,13 @@ const updateDatosCompany = async (req, res) => {
         return
     }
 
-    const user = await userModel.updateOne({_id: dataToken._id}, {nombre, apellidos, nif})
+    const user = await userModel.updateOne({_id: dataToken._id}, {autonomo, company: { name: dataToken.name, cif: company.cif, address: company.address }})
     if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
     
     }
-    res.status(201).json({message: "Usuario actualizado correctamente:",user, nombre, apellidos, nif})
+    res.status(201).json({message: "Usuario actualizado correctamente:",user, company: { name: dataToken.name, cif: company.cif, address: company.address }})
 
 }
 
-module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales }
+module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany }

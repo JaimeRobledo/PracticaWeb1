@@ -46,20 +46,24 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjQ5ZDJhNTU3YTYyOTc5ZjBkMGEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDcwMzY1LCJleHAiOjE3NDMwNzc1NjV9.sMxRcg8fAXuICfKiNsfOghwzBpKWZ5bwuGUCunSO4ZQ
 
 {
-  "address": {
-    "street": "Carlos V",
-    "number": 22,
-    "postal": 28936,
-    "city": "Móstoles",
-    "province": "Madrid"
-  },
+  "autonomo": false,
   "company": {
-    "name": "SERVITOP, SL",
-    "cif": "BXXXXXXXX",
-    "street": "Carlos V",
-    "number": 22,
-    "postal": 28936,
-    "city": "Móstoles",
-    "province": "Madrid"
+        "name": "SERVITOP, SL",
+        "cif": "BXXXXXXXX",
+        "address": "Carlos V",
+    }
 }
+
+###
+PUT http://localhost:3000/api/users/actualizarDatosCompany
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjQ5ZDJhNTU3YTYyOTc5ZjBkMGEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzMDcwMzY1LCJleHAiOjE3NDMwNzc1NjV9.sMxRcg8fAXuICfKiNsfOghwzBpKWZ5bwuGUCunSO4ZQ
+
+{
+  "autonomo": true,
+  "company": {
+        "name": "Jaime Robledo Sanchez",
+        "cif": "12345678A",
+        "address": "Calle de la Paz"
+    }
 }

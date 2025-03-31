@@ -60,7 +60,7 @@ const UserScheme = new mongoose.Schema(
             unique: true,
             required: true
         },
-        adress:{
+        address:{
             type: String,
             required: true
         }
