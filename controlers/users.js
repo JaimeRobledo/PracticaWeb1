@@ -156,25 +156,27 @@ const updateDatosCompany = async (req, res) => {
         return
     }
 
-    const datosCompany = {company: { name: company.name, cif: company.cif, address: company.address }}
+    let datosCompany;
     // Si el usuario es autonomo, se le asigna el nombre del usuario como nombre de la empresa  
     // y el cif como el nif del usuario
     // Si no, se le asigna el nombre de la empresa y el cif de la empresa
+
+    const usuario = await userModel.findOne({_id: dataToken._id})
      
     if (autonomo) {
-        datosCompany = {company: { name: dataToken.nombre, cif: company.nif, address: company.address }}
+        datosCompany = {company: { name: usuario.nombre, cif: usuario.nif, address: company.address }}
     }
     else {
         datosCompany = {company: { name: company.name, cif: company.cif, address: company.address }}
     }
     
 
-    const user = await userModel.updateOne({_id: dataToken._id}, {autonomo, datosCompany})
+    const user = await userModel.updateOne({_id: dataToken._id}, {autonomo,  company: datosCompany.company})
     if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
     
     }
-    res.status(201).json({message: "Usuario actualizado correctamente:",user, company: { name: dataToken.name, cif: company.cif, address: company.address }})
+    res.status(201).json({message: "Usuario actualizado correctamente:",user, company: datosCompany.company})
 
 }
 
