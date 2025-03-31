@@ -371,8 +371,46 @@ const invitarGuest = async (req, res) => {
 
 }
 
+const uploadLogo = async (req, res) => {
+
+    if (!req.headers.authorization) {
+        return res.status(401).json({ message: "NOT_TOKEN" });
+    }
+
+    const token = req.headers.authorization.split(' ').pop();
+    const dataToken = await verifyToken(token);
+    if (!dataToken) {
+        return res.status(401).json({ message: "INVALID_TOKEN" });
+    }
+    
+    if (!req.file) {
+        return res.status(400).json({ message: "No se ha subido ninguna imagen" });
+    }
+
+    
+
+    const filePath = `/AlmacenLogos/${req.file.filename}`; // Ruta del archivo guardado
+
+    const user = await userModel.findOne({ _id: dataToken._id });
+    if (!user) {
+        return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    if (user.logo === filePath) {
+        return res.status(400).json({ message: "Este logo ya está registrado" });
+    }
+
+    await userModel.findOneAndUpdate(
+        { _id: dataToken._id },
+        { logo: filePath },
+        { new: true }
+    );
+
+    res.status(200).json({ message: "Logo actualizado correctamente", logo: filePath });
+};
+
 
     
 
 
-module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest }
+module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest, uploadLogo }

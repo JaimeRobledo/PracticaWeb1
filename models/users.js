@@ -43,6 +43,9 @@ const UserScheme = new mongoose.Schema(
         type: String,
         unique: true
     },
+    logo:{
+        type: String,
+    },
     autonomo:{
         type: Boolean,
         default: false

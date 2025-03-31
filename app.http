@@ -14,7 +14,7 @@ Content-Type: application/json
 
 POST http://localhost:3000/api/users/validate
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjY3ZGYyZTE1YzViMDY3ZGE0MjYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM1Mzg5LCJleHAiOjE3NDM0NDI1ODl9.Dbsy7BV3JBco7kMFjCVOprhwwW7k1hxeEAFiczyBuSg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
 
 {
     "codigo_validacion": "512215"
@@ -26,13 +26,13 @@ Content-Type: application/json
 
 {
     "email": "user1@gmail.com",
-    "password": "1234567890"
+    "password": "12345678912"
 }
 
 ###
 PUT http://localhost:3000/api/users/actualizarDatosPersonales
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDMzOTg1LCJleHAiOjE3NDM0NDExODV9.c92pKlOOv81vJWHetFoDHRbM3xzXwQQBeHwvTqwCfWU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
 
 {
     "nombre": "Jaime",
@@ -43,8 +43,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwM
 ###
 PUT http://localhost:3000/api/users/actualizarDatosCompany
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDMzOTg1LCJleHAiOjE3NDM0NDExODV9.c92pKlOOv81vJWHetFoDHRbM3xzXwQQBeHwvTqwCfWU
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
 {
   "autonomo": false,
   "company": {
@@ -57,7 +56,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwM
 ###
 PUT http://localhost:3000/api/users/actualizarDatosCompany
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDMzOTg1LCJleHAiOjE3NDM0NDExODV9.c92pKlOOv81vJWHetFoDHRbM3xzXwQQBeHwvTqwCfWU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
 
 {
   "autonomo": true,
@@ -71,7 +70,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwM
 ###
 GET http://localhost:3000/api/users/porJWT
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDMzOTg1LCJleHAiOjE3NDM0NDExODV9.c92pKlOOv81vJWHetFoDHRbM3xzXwQQBeHwvTqwCfWU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
 
 ###
 DELETE http://localhost:3000/api/users/deleteUser?soft=true
@@ -112,8 +111,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwM
 ###
 POST http://localhost:3000/api/users/invitar
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDMzOTg1LCJleHAiOjE3NDM0NDExODV9.c92pKlOOv81vJWHetFoDHRbM3xzXwQQBeHwvTqwCfWU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
 
 {
     "email": "guest1@gmail.com"
 }
+
+###
+POST http://localhost:3000/api/users/logo 
+Content-Type: multipart/form-data; boundary=boundary123
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
+
+--boundary123
+Content-Disposition: form-data; name="image"; filename="pengu.jpg"
+Content-Type: image/jpeg
+
+< ./pengu.jpg
+--boundary123-->
