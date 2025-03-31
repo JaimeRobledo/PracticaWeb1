@@ -57,4 +57,13 @@ const validatorDatosCompany = [
 
 ]
 
-module.exports = { validatorRegister, validatorCodigo, validatorLogin, validatorDatosPersonales, validatorDatosCompany }
+const validarGuest = [
+
+    check("email").exists().notEmpty().isEmail(),
+    
+    (req, res, next) => {
+        return validateResults(req, res, next)
+    }
+]
+
+module.exports = { validatorRegister, validatorCodigo, validatorLogin, validatorDatosPersonales, validatorDatosCompany, validarGuest }

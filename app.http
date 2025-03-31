@@ -88,6 +88,24 @@ PUT http://localhost:3000/api/users/recuperarPassword
 Content-Type: application/json
 
 ###
+PUT http://localhost:3000/api/users/validarRecuperacion
+Content-Type: application/json
+Authorization: Bearer 
+{
+    "codigo_validacion": "512215"
+}
+
+###
+PUT http://localhost:3000/api/users/restablecerPassword
+Content-Type: application/json
+Authorization: Bearer
+
+{
+    "email": "user1@gmail.com",
+    "password": "12345678912"
+}
+
+###
 POST http://localhost:3000/api/users/invitar
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDMzOTg1LCJleHAiOjE3NDM0NDExODV9.c92pKlOOv81vJWHetFoDHRbM3xzXwQQBeHwvTqwCfWU
