@@ -23,7 +23,7 @@ userRouter.delete('/deleteUser', deleteUser);
 
 userRouter.put('/recuperarPassword',recuperarPassword);
 
-userRouter.put('/validarRecuperacion',validarRecuperacion);
+userRouter.put('/validarRecuperacion', validatorCodigo , validarRecuperacion);
 
 userRouter.put('/restablecerPassword',restablecerPassword);
 

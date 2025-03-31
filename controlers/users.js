@@ -241,19 +241,90 @@ const deleteUser = async (req, res) => {
 
 const recuperarPassword = async (req, res) => {
 
-    const {email} = req.body
-    const user = await userModel.findOne({email})
+    const { email } = req.body;
+    const user = await userModel.findOne({ email: email });
+
     if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
     }
+
     const codigo_recuperacion = Math.floor(100000 + Math.random() * 900000).toString();
-    await userModel.updateOne({email}, {codigo_recuperacion})
-    
-    console.log("Codigo de recuperacion:",codigo_recuperacion)  
+    await  userModel.updateOne({ email: email }, { codigo_validacion: codigo_recuperacion });
+    const token = tokenSign(user)
 
+    res.status(200).json({ message: "Código de recuperación enviado a tu email.",codigo_recuperacion, token });
+}
 
+const validarRecuperacion = async (req, res) => {
+    const {codigo_validacion} = req.body
+
+    if (!req.headers.authorization) {
+        handleHttpError(res, "NOT_TOKEN", 401)
+        return
+    }
+    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
+    const token = req.headers.authorization.split(' ').pop()
+    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
+    const dataToken = await verifyToken(token)
+    console.log(dataToken)
+    if(!dataToken) {
+        handleHttpError(res, "INVALID_TOKEN", 401)
+        return
+    }
+
+    const user = await userModel.findOne({_id: dataToken._id})
+    if (!user) {
+        return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    console.log("Usuario:", user.email, user.codigo_validacion)
+
+    if (user.codigo_validacion !== codigo_validacion) {
+        return res.status(400).json({ message: "Código de validación incorrecto" });
+    }
+
+    await user.save()
+
+    res.status(201).json({message: "Restablecimiento de password validado correctamente",token})
+   
+}
+
+const restablecerPassword = async (req, res) => {
+
+    const { password} = req.body
+
+    if (!req.headers.authorization) {
+        handleHttpError(res, "NOT_TOKEN", 401)
+        return
+    }
+    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
+    const token = req.headers.authorization.split(' ').pop()
+    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
+    const dataToken = await verifyToken(token)
+    console.log(dataToken)
+    if(!dataToken) {
+        handleHttpError(res, "INVALID_TOKEN", 401)
+        return
+    }
+
+    const user = await userModel.findOne({_id: dataToken._id})
+    if (!user) {
+        return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    const hashedPassword = await encrypt(password);
+
+        // Actualizar la contraseña y eliminar el código de recuperación
+        user.password = hashedPassword;
+        user.codigo_recuperacion = null;
+        await user.save();
+
+        res.status(200).json({ message: "Contraseña restablecida correctamente" });
+        console.log("Contraseña restablecida:",user.email, user.hashedPassword)
 
 }
+
+
 
 const invitarGuest = async (req, res) => {
     if (!req.headers.authorization) {
@@ -299,7 +370,9 @@ const invitarGuest = async (req, res) => {
         });
 
 }
+
+
     
 
 
-module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, invitarGuest }
+module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest }

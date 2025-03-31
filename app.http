@@ -87,21 +87,25 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjY3Z
 PUT http://localhost:3000/api/users/recuperarPassword
 Content-Type: application/json
 
+{
+    "email": "user1@gmail.com"
+}
+
 ###
 PUT http://localhost:3000/api/users/validarRecuperacion
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQwNjY3LCJleHAiOjE3NDM0NDc4Njd9.pBLCevXZNnnIUGp2r7Xvzn6VZ0Wm4qA_yWCD9Tt2UMA
+
 {
-    "codigo_validacion": "512215"
+    "codigo_validacion": "646264"
 }
 
 ###
 PUT http://localhost:3000/api/users/restablecerPassword
 Content-Type: application/json
-Authorization: Bearer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQwNjY3LCJleHAiOjE3NDM0NDc4Njd9.pBLCevXZNnnIUGp2r7Xvzn6VZ0Wm4qA_yWCD9Tt2UMA
 
 {
-    "email": "user1@gmail.com",
     "password": "12345678912"
 }
 
