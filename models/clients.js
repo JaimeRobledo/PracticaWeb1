@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const mongooseDelete = require('mongoose-delete');
 const ClientScheme = new mongoose.Schema(
 {
     nombre: {
@@ -49,4 +50,5 @@ const ClientScheme = new mongoose.Schema(
         versionKey: false
     }
 )
+ClientScheme.plugin(mongooseDelete, {overrideMethods: "all"})
 module.exports = mongoose.model("clients", ClientScheme) 

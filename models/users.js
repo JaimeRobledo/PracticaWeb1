@@ -23,6 +23,7 @@ si se equivoca 3 veces, se le bloquea la cuenta
 */ 
 
 const mongoose = require("mongoose")
+const mongooseDelete = require('mongoose-delete');
 const UserScheme = new mongoose.Schema(
 {
     email: {
@@ -87,4 +88,5 @@ const UserScheme = new mongoose.Schema(
         versionKey: false
     }
 )
+UserScheme.plugin(mongooseDelete, {overrideMethods: "all"})
 module.exports = mongoose.model("users", UserScheme) // “users” es el nombre de la colección en mongoDB (o de la tabla en SQL)
