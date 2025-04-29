@@ -66,4 +66,39 @@ const encontrarClient = async (req, res) => {
     res.status(201).json(result)
 }
 
-module.exports = {crearCliente, updateClient, listarClients, encontrarClient}
+const deleteClient = async (req, res) => {
+    if (!req.headers.authorization) {
+        handleHttpError(res, "NOT_TOKEN", 401)
+        return
+    }
+    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
+    const token = req.headers.authorization.split(' ').pop()
+    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
+    const dataToken = await verifyToken(token)
+    console.log(dataToken)
+    if(!dataToken) {
+        handleHttpError(res, "INVALID_TOKEN", 401)
+        return
+    }
+
+    const softDelete = req.query.soft !== "false"
+
+    if(softDelete){
+        const user = await clientModel.updateOne({_id: dataToken._id}, {estado: false})
+        if (!user) {
+            return res.status(404).json({ message: "Cliente no encontrado" });
+        
+        }
+        res.status(201).json({message: "Cliente desactivado correctamente:",user})
+    }else{
+        const user = await clientModel.deleteOne({_id: dataToken._id})
+        if (!user) {
+            return res.status(404).json({ message: "Cliente no encontrado" });
+        
+        }
+        res.status(201).json({message: "Cliente eliminado correctamente:",user})
+    }
+
+}
+
+module.exports = {crearCliente, updateClient, listarClients, encontrarClient, deleteClient}
