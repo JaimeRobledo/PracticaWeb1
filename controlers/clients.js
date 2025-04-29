@@ -31,4 +31,26 @@ const crearCliente = async (req, res) => {
     
 }
 
-module.exports = {crearCliente}
+const updateClient = async (req, res) => {
+    const { id } = req.params
+    const { nombre, cif, address, usuarioId, companiaId } = req.body
+  
+    try {
+      const clienteActualizado = await clientModel.findByIdAndUpdate(
+        id,
+        { nombre, cif, address, usuarioId, companiaId },
+        { new: true }
+      )
+  
+      if (!clienteActualizado) {
+        return res.status(404).json({ message: "Cliente no encontrado" })
+      }
+  
+      return res.status(200).json({ message: "Cliente actualizado", cliente: clienteActualizado })
+    } catch (error) {
+      console.error(error)
+      return res.status(500).json({ message: "Error al actualizar el cliente" })
+    }
+  }
+
+module.exports = {crearCliente, updateClient, listarClientes}
