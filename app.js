@@ -17,10 +17,10 @@ app.listen(port, () => {
 })
 dbConnect()
 
-app.use("/api-docs",
+/*app.use("/api-docs",
     swaggerUi.serve,
     swaggerUi.setup(swaggerSpecs)
     )
     app.use("/api", require("./router"))
 
-module.exports = {app, server};
+module.exports = {app, server};*/
