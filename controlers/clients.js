@@ -4,8 +4,7 @@ const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
 
 const crearCliente = async (req, res) => {
     try {
-        const { nombre, cif, address, companiaId } = req.body
-        const usuarioId = req.user.id
+        const { nombre, cif, address, usuarioId, companiaId } = req.body
     
         // Compruebo si ya existe un cliente con ese CIF para ese usuario o su compañía
         const clienteExistente = await clientModel.findOne({cif, usuarioId, companiaId})
