@@ -222,15 +222,15 @@ const deleteUser = async (req, res) => {
     const softDelete = req.query.soft !== "false"
 
     if(softDelete){
-        const user = await userModel.updateOne({_id: dataToken._id}, {estado: false})
-        if (!user) {
+        const user = await userModel.delete({ _id: dataToken._id });
+        if (user.deleted === 0) {
             return res.status(404).json({ message: "Usuario no encontrado" });
         
         }
         res.status(201).json({message: "Usuario desactivado correctamente:",user})
     }else{
         const user = await userModel.deleteOne({_id: dataToken._id})
-        if (!user) {
+        if (user.deletedCount === 0) {
             return res.status(404).json({ message: "Usuario no encontrado" });
         
         }
