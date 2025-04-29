@@ -5,17 +5,28 @@ const ClientScheme = new mongoose.Schema(
         type: String,
         required: true,
       },
-      email: {
-        type: String,
-        required: true,
-        unique: true,
-      },
-      telefono: {
+      cif: {
         type: String,
         required: true,
       },
-      direccion: {
-        type: String,
+      address: {
+        type: {
+            street: { 
+                type: String, required: true 
+            },
+            number: { 
+                type: Number, required: true 
+            },
+            postal: { 
+                type: Number, required: true 
+            },
+            city: { 
+                type: String, required: true 
+            },
+            province: { 
+                type: String, required: true 
+            }
+          },
         required: true,
       },
       usuarioId: {
