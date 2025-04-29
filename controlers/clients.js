@@ -53,4 +53,8 @@ const updateClient = async (req, res) => {
     }
   }
 
-module.exports = {crearCliente, updateClient, listarClientes}
+const listarClients = async (req, res) => {
+
+}
+
+module.exports = {crearCliente, updateClient, listarClients}

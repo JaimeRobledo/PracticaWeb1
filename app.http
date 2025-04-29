@@ -133,7 +133,6 @@ Content-Type: image/jpeg
 ###
 POST http://localhost:3000/api/clients/crearCliente
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxYzdiMTBjYWU0ZTVkZjEzMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTQ0NTM4LCJleHAiOjE3NDU5NTE3Mzh9.U2I7LRmHDBnlKVUBmKPGAqDZ07eKu7FkQllCE2fclQA
 
 {
   "nombre": "ACS",
@@ -147,3 +146,28 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxY
   },
   "usuarioId": "6810fe1c7b10cae4e5df131e"
 }
+
+###
+PUT http://localhost:3000/api/clients/actualizarCliente/6811018bfb4172155a05651f
+Content-Type: application/json
+
+{
+  "nombre": "FCC",
+  "cif": "D52921210",
+  "address": {
+    "street": "Felipe II",
+    "number": 22,
+    "postal": 28936,
+    "city": "Móstoles",
+    "province": "Madrid"
+  },
+  "usuarioId": "6810fe1c7b10cae4e5df131e"
+}
+
+###
+GET http://localhost:3000/api/clients
+Content-Type: application/json
+
+###
+GET http://localhost:3000/api/clients/6811018bfb4172155a05651f
+Content-Type: application/json
