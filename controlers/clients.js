@@ -54,7 +54,16 @@ const updateClient = async (req, res) => {
   }
 
 const listarClients = async (req, res) => {
-
+    const result = await clientModel.find()
+    console.log("Clients encontrados", result)
+    res.status(201).json(result)
 }
 
-module.exports = {crearCliente, updateClient, listarClients}
+const encontrarClient = async (req, res) => {
+    const {id} = req.params
+    const result = await clientModel.findById(id)
+    console.log("Cliente encontrado", result)
+    res.status(201).json(result)
+}
+
+module.exports = {crearCliente, updateClient, listarClients, encontrarClient}
