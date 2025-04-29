@@ -6,7 +6,7 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-    "email": "user33@gmail.com",
+    "email": "user3@gmail.com",
     "password": "123456789"
 }
 
@@ -76,12 +76,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxY
 ###
 DELETE http://localhost:3000/api/users/deleteUser?soft=true
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjY3ZGYyZTE1YzViMDY3ZGE0MjYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM1Mzg5LCJleHAiOjE3NDM0NDI1ODl9.Dbsy7BV3JBco7kMFjCVOprhwwW7k1hxeEAFiczyBuSg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODExNGE0ODkxMGNjZmQ5ZTAyYzRjMmUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTYzNTkyLCJleHAiOjE3NDU5NzA3OTJ9.EYE85mzeEF78PSrKf2rkIWcH7qN1KOzsOo8snEcTgqo
 
 ###
 DELETE http://localhost:3000/api/users/deleteUser?soft=false
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjY3ZGYyZTE1YzViMDY3ZGE0MjYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM1Mzg5LCJleHAiOjE3NDM0NDI1ODl9.Dbsy7BV3JBco7kMFjCVOprhwwW7k1hxeEAFiczyBuSg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODExNGE0ODkxMGNjZmQ5ZTAyYzRjMmUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTYzNTkyLCJleHAiOjE3NDU5NzA3OTJ9.EYE85mzeEF78PSrKf2rkIWcH7qN1KOzsOo8snEcTgqo
 
 ###
 PUT http://localhost:3000/api/users/recuperarPassword
