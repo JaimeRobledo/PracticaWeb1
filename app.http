@@ -6,18 +6,18 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-    "email": "user2@gmail.com",
-    "password": "1234567890"
+    "email": "user33@gmail.com",
+    "password": "123456789"
 }
 
 ###
 
 POST http://localhost:3000/api/users/validate
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxYzdiMTBjYWU0ZTVkZjEzMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTQ0MDkyLCJleHAiOjE3NDU5NTEyOTJ9.r1DSqquXUazNZdPXYMMl0osiKTAP2oAglDzl87Fz1M4
 
 {
-    "codigo_validacion": "512215"
+    "codigo_validacion": "429420"
 }
 
 ###
@@ -25,38 +25,39 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-    "email": "user1@gmail.com",
-    "password": "12345678912"
+    "email": "user33@gmail.com",
+    "password": "123456789"
 }
 
 ###
 PUT http://localhost:3000/api/users/actualizarDatosPersonales
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxYzdiMTBjYWU0ZTVkZjEzMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTQ0Mjc5LCJleHAiOjE3NDU5NTE0Nzl9.Oadtf0ivDmCyL89GLI46L3BBMvAuQ4q3McLLaaD3CP8
 
 {
     "nombre": "Jaime",
     "apellidos": "Robledo Sanchez",
-    "nif": "12345678A"
+    "nif": "69696969B"
 }
 
 ###
 PUT http://localhost:3000/api/users/actualizarDatosCompany
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxYzdiMTBjYWU0ZTVkZjEzMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTQ0Mjc5LCJleHAiOjE3NDU5NTE0Nzl9.Oadtf0ivDmCyL89GLI46L3BBMvAuQ4q3McLLaaD3CP8
+
 {
   "autonomo": false,
   "company": {
-        "name": "SERVITOP, SL",
-        "cif": "BXXXXXXXX",
-        "address": "Carlos V"
+        "name": "GOOGLE, SL",
+        "cif": "AXXXXXXXX",
+        "address": "Felipe II"
     }
 }
 
 ###
 PUT http://localhost:3000/api/users/actualizarDatosCompany
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxYzdiMTBjYWU0ZTVkZjEzMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTQ0MDkyLCJleHAiOjE3NDU5NTEyOTJ9.r1DSqquXUazNZdPXYMMl0osiKTAP2oAglDzl87Fz1M4
 
 {
   "autonomo": true,
@@ -70,7 +71,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwM
 ###
 GET http://localhost:3000/api/users/porJWT
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxYzdiMTBjYWU0ZTVkZjEzMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTQ0MDkyLCJleHAiOjE3NDU5NTEyOTJ9.r1DSqquXUazNZdPXYMMl0osiKTAP2oAglDzl87Fz1M4
 
 ###
 DELETE http://localhost:3000/api/users/deleteUser?soft=true
@@ -128,3 +129,21 @@ Content-Type: image/jpeg
 
 < ./pengu.jpg
 --boundary123-->
+
+###
+POST http://localhost:3000/api/clients/crearCliente
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxYzdiMTBjYWU0ZTVkZjEzMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTQ0NTM4LCJleHAiOjE3NDU5NTE3Mzh9.U2I7LRmHDBnlKVUBmKPGAqDZ07eKu7FkQllCE2fclQA
+
+{
+  "nombre": "ACS",
+  "cif": "D52921210",
+  "address": {
+    "street": "Felipe II",
+    "number": 22,
+    "postal": 28936,
+    "city": "Móstoles",
+    "province": "Madrid"
+  },
+  "usuarioId": "6810fe1c7b10cae4e5df131e"
+}

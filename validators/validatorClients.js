@@ -11,6 +11,7 @@ const validatorCrearCliente = [
     check("address.postal").exists().notEmpty(),
     check("address.city").exists().notEmpty(),
     check("address.province").exists().notEmpty(),
+    check("usuarioId").exists().notEmpty(),
     check("companiaId").optional().notEmpty(),
 
     (req, res, next) => {
