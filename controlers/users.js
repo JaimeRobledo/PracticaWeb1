@@ -50,21 +50,7 @@ const validateItem = async (req, res) => {
     const {codigo_validacion} = req.body
     console.log("Codigo de validación recibido:", codigo_validacion)
 
-    if (!req.headers.authorization) {
-        handleHttpError(res, "NOT_TOKEN", 401)
-        return
-    }
-    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-    const token = req.headers.authorization.split(' ').pop()
-    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-    const dataToken = await verifyToken(token)
-    console.log(dataToken)
-    if(!dataToken) {
-        handleHttpError(res, "INVALID_TOKEN", 401)
-        return
-    }
-
-    const user = await userModel.findOne({_id: dataToken._id})
+    const user = await userModel.findOne({_id: req.user._id})
     if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
     }
@@ -118,21 +104,8 @@ const loginItem = async (req, res) => {
 
 const updateDatosPersonales = async (req, res) => {
     const {nombre, apellidos, nif} = req.body
-    if (!req.headers.authorization) {
-        handleHttpError(res, "NOT_TOKEN", 401)
-        return
-    }
-    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-    const token = req.headers.authorization.split(' ').pop()
-    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-    const dataToken = await verifyToken(token)
-    console.log(dataToken)
-    if(!dataToken) {
-        handleHttpError(res, "INVALID_TOKEN", 401)
-        return
-    }
 
-    const user = await userModel.updateOne({_id: dataToken._id}, {nombre, apellidos, nif})
+    const user = await userModel.updateOne({_id: req.user._id}, {nombre, apellidos, nif})
     if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
     
@@ -144,26 +117,13 @@ const updateDatosPersonales = async (req, res) => {
 const updateDatosCompany = async (req, res) => {
 
     const { autonomo, company } = req.body;
-    if (!req.headers.authorization) {
-        handleHttpError(res, "NOT_TOKEN", 401)
-        return
-    }
-    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-    const token = req.headers.authorization.split(' ').pop()
-    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-    const dataToken = await verifyToken(token)
-    console.log(dataToken)
-    if(!dataToken) {
-        handleHttpError(res, "INVALID_TOKEN", 401)
-        return
-    }
 
     let datosCompany;
     // Si el usuario es autonomo, se le asigna el nombre del usuario como nombre de la empresa  
     // y el cif como el nif del usuario
     // Si no, se le asigna el nombre de la empresa y el cif de la empresa
 
-    const usuario = await userModel.findOne({_id: dataToken._id})
+    const usuario = await userModel.findOne({_id: req.user._id})
      
     if (autonomo) {
         datosCompany = {company: { name: usuario.nombre, cif: usuario.nif, address: company.address }}
@@ -173,7 +133,7 @@ const updateDatosCompany = async (req, res) => {
     }
     
 
-    const user = await userModel.updateOne({_id: dataToken._id}, {autonomo,  company: datosCompany.company})
+    const user = await userModel.updateOne({_id: req.user._id}, {autonomo,  company: datosCompany.company})
     if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
     
@@ -183,21 +143,8 @@ const updateDatosCompany = async (req, res) => {
 }
 
 const getPorJWT = async (req, res) => {
-    if (!req.headers.authorization) {
-        handleHttpError(res, "NOT_TOKEN", 401)
-        return
-    }
-    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-    const token = req.headers.authorization.split(' ').pop()
-    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-    const dataToken = await verifyToken(token)
-    console.log(dataToken)
-    if(!dataToken) {
-        handleHttpError(res, "INVALID_TOKEN", 401)
-        return
-    }
 
-    const user = await userModel.findOne({_id: dataToken._id})
+    const user = await userModel.findOne({_id: req.user._id})
     if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
     
@@ -208,31 +155,19 @@ const getPorJWT = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     
-    if (!req.headers.authorization) {
-        handleHttpError(res, "NOT_TOKEN", 401)
-        return
-    }
-    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-    const token = req.headers.authorization.split(' ').pop()
-    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-    const dataToken = await verifyToken(token)
-    console.log(dataToken)
-    if(!dataToken) {
-        handleHttpError(res, "INVALID_TOKEN", 401)
-        return
-    }
+    
 
     const softDelete = req.query.soft !== "false"
 
     if(softDelete){
-        const user = await userModel.delete({ _id: dataToken._id });
+        const user = await userModel.delete({ _id: req.user._id });
         if (user.deleted === 0) {
             return res.status(404).json({ message: "Usuario no encontrado" });
         
         }
         res.status(201).json({message: "Usuario desactivado correctamente:",user})
     }else{
-        const user = await userModel.deleteOne({_id: dataToken._id})
+        const user = await userModel.deleteOne({_id: req.user._id})
         if (user.deletedCount === 0) {
             return res.status(404).json({ message: "Usuario no encontrado" });
         
@@ -261,21 +196,7 @@ const recuperarPassword = async (req, res) => {
 const validarRecuperacion = async (req, res) => {
     const {codigo_validacion} = req.body
 
-    if (!req.headers.authorization) {
-        handleHttpError(res, "NOT_TOKEN", 401)
-        return
-    }
-    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-    const token = req.headers.authorization.split(' ').pop()
-    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-    const dataToken = await verifyToken(token)
-    console.log(dataToken)
-    if(!dataToken) {
-        handleHttpError(res, "INVALID_TOKEN", 401)
-        return
-    }
-
-    const user = await userModel.findOne({_id: dataToken._id})
+    const user = await userModel.findOne({_id: req.user._id})
     if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
     }
@@ -296,21 +217,7 @@ const restablecerPassword = async (req, res) => {
 
     const { password} = req.body
 
-    if (!req.headers.authorization) {
-        handleHttpError(res, "NOT_TOKEN", 401)
-        return
-    }
-    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-    const token = req.headers.authorization.split(' ').pop()
-    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-    const dataToken = await verifyToken(token)
-    console.log(dataToken)
-    if(!dataToken) {
-        handleHttpError(res, "INVALID_TOKEN", 401)
-        return
-    }
-
-    const user = await userModel.findOne({_id: dataToken._id})
+    const user = await userModel.findOne({_id: req.user._id})
     if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
     }
@@ -330,21 +237,8 @@ const restablecerPassword = async (req, res) => {
 
 
 const invitarGuest = async (req, res) => {
-    if (!req.headers.authorization) {
-        handleHttpError(res, "NOT_TOKEN", 401)
-        return
-    }
-    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-    const token = req.headers.authorization.split(' ').pop()
-    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-    const dataToken = await verifyToken(token)
-    console.log(dataToken)
-    if(!dataToken) {
-        handleHttpError(res, "INVALID_TOKEN", 401)
-        return
-    }
 
-    const user = await userModel.findOne({_id: dataToken._id})
+    const user = await userModel.findOne({_id: req.user._id})
     if (!user) {
         return res.status(404).json({ message: "Usuario Host no encontrado" });
     
@@ -375,16 +269,6 @@ const invitarGuest = async (req, res) => {
 }
 
 const uploadLogo = async (req, res) => {
-
-    if (!req.headers.authorization) {
-        return res.status(401).json({ message: "NOT_TOKEN" });
-    }
-
-    const token = req.headers.authorization.split(' ').pop();
-    const dataToken = await verifyToken(token);
-    if (!dataToken) {
-        return res.status(401).json({ message: "INVALID_TOKEN" });
-    }
     
     if (!req.file) {
         return res.status(400).json({ message: "No se ha subido ninguna imagen" });
@@ -394,7 +278,7 @@ const uploadLogo = async (req, res) => {
 
     const filePath = `/AlmacenLogos/${req.file.filename}`; // Ruta del archivo guardado
 
-    const user = await userModel.findOne({ _id: dataToken._id });
+    const user = await userModel.findOne({ _id: req.user._id });
     if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
     }
@@ -404,7 +288,7 @@ const uploadLogo = async (req, res) => {
     }
 
     await userModel.findOneAndUpdate(
-        { _id: dataToken._id },
+        { _id: req.user._id },
         { logo: filePath },
         { new: true }
     );

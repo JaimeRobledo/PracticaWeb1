@@ -6,7 +6,7 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-    "email": "user4@gmail.com",
+    "email": "user5@gmail.com",
     "password": "123456789"
 }
 
@@ -14,10 +14,10 @@ Content-Type: application/json
 
 POST http://localhost:3000/api/users/validate
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDI5MTc1LCJleHAiOjE3NDYwMzYzNzV9.LQ64q3ib7IUlfYW53rWEJtj5qoEkVO0oz7fhasEQC6E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNjMzMjg3YzJlMzQ2YWQ4Y2ZmMzciLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDM1NTA2LCJleHAiOjE3NDYwNDI3MDZ9.bWestbsCrthVaMmSYcfkNP7WIQk9PmS891SCTvS4gaQ
 
 {
-    "codigo_validacion": "965245"
+    "codigo_validacion": "281666"
 }
 
 ###
@@ -25,31 +25,31 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-    "email": "user4@gmail.com",
+    "email": "user5@gmail.com",
     "password": "123456789"
 }
 
 ###
 PUT http://localhost:3000/api/users/actualizarDatosPersonales
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxYzdiMTBjYWU0ZTVkZjEzMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTQ0Mjc5LCJleHAiOjE3NDU5NTE0Nzl9.Oadtf0ivDmCyL89GLI46L3BBMvAuQ4q3McLLaaD3CP8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNjMzMjg3YzJlMzQ2YWQ4Y2ZmMzciLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDM1NTQ4LCJleHAiOjE3NDYwNDI3NDh9.vJFpjXrkERpwku-xlPs2Jw0tsRSH5rjsoropeMPoCVM
 
 {
     "nombre": "Jaime",
     "apellidos": "Robledo Sanchez",
-    "nif": "69696969B"
+    "nif": "69696970B"
 }
 
 ###
 PUT http://localhost:3000/api/users/actualizarDatosCompany
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxYzdiMTBjYWU0ZTVkZjEzMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTQ0Mjc5LCJleHAiOjE3NDU5NTE0Nzl9.Oadtf0ivDmCyL89GLI46L3BBMvAuQ4q3McLLaaD3CP8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNjMzMjg3YzJlMzQ2YWQ4Y2ZmMzciLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDM1NTQ4LCJleHAiOjE3NDYwNDI3NDh9.vJFpjXrkERpwku-xlPs2Jw0tsRSH5rjsoropeMPoCVM
 
 {
   "autonomo": false,
   "company": {
         "name": "GOOGLE, SL",
-        "cif": "AXXXXXXXX",
+        "cif": "CXXXXXXXX",
         "address": "Felipe II"
     }
 }
@@ -57,13 +57,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxY
 ###
 PUT http://localhost:3000/api/users/actualizarDatosCompany
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxYzdiMTBjYWU0ZTVkZjEzMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTQ0MDkyLCJleHAiOjE3NDU5NTEyOTJ9.r1DSqquXUazNZdPXYMMl0osiKTAP2oAglDzl87Fz1M4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNjMzMjg3YzJlMzQ2YWQ4Y2ZmMzciLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDM1NTQ4LCJleHAiOjE3NDYwNDI3NDh9.vJFpjXrkERpwku-xlPs2Jw0tsRSH5rjsoropeMPoCVM
 
 {
   "autonomo": true,
   "company": {
         "name": "Jaime Robledo Sanchez",
-        "cif": "12345678A",
+        "cif": "12345678C",
         "address": "Calle de la Paz"
     }
 }
@@ -71,12 +71,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxY
 ###
 GET http://localhost:3000/api/users/porJWT
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxYzdiMTBjYWU0ZTVkZjEzMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTQ0MDkyLCJleHAiOjE3NDU5NTEyOTJ9.r1DSqquXUazNZdPXYMMl0osiKTAP2oAglDzl87Fz1M4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNjMzMjg3YzJlMzQ2YWQ4Y2ZmMzciLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDM1NTQ4LCJleHAiOjE3NDYwNDI3NDh9.vJFpjXrkERpwku-xlPs2Jw0tsRSH5rjsoropeMPoCVM
 
 ###
 DELETE http://localhost:3000/api/users/deleteUser?soft=true
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODExNGE0ODkxMGNjZmQ5ZTAyYzRjMmUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTYzNTkyLCJleHAiOjE3NDU5NzA3OTJ9.EYE85mzeEF78PSrKf2rkIWcH7qN1KOzsOo8snEcTgqo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNjMzMjg3YzJlMzQ2YWQ4Y2ZmMzciLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDM1NTQ4LCJleHAiOjE3NDYwNDI3NDh9.vJFpjXrkERpwku-xlPs2Jw0tsRSH5rjsoropeMPoCVM
 
 ###
 DELETE http://localhost:3000/api/users/deleteUser?soft=false
