@@ -7,7 +7,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 const swaggerUi = require("swagger-ui-express")
-const swaggerSpecs = require("./docs/swagger")
+const swaggerSpecs = require("./docs/swagger.js")
 app.use(express.static("storage")) // http://localhost:3000/file.jpg
 const port = process.env.PORT || 3000
 const server = app.listen(port, () => {
@@ -15,10 +15,11 @@ const server = app.listen(port, () => {
 })
 dbConnect()
 
-app.use("/api-docs",
+app.use("/api-documentacion",
     swaggerUi.serve,
     swaggerUi.setup(swaggerSpecs)
 )
+
 app.use("/api", require("./router"))
 
 
