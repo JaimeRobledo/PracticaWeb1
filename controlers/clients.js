@@ -149,4 +149,4 @@ const listarArchivados = async (req, res) => {
 
 
 
-module.exports = {crearCliente, updateClient, listarClients, encontrarClient, deleteClient}
+module.exports = {crearCliente, updateClient, listarClients, encontrarClient, deleteClient, listarArchivados}
