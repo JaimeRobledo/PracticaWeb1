@@ -106,12 +106,12 @@ const loginItem = async (req, res) => {
             user.bloqueado = true
         }
         await user.save()
-        return res.status(400).json({ message: "Contraseña incorrecta" });
+        return res.status(401).json({ message: "Contraseña incorrecta" });
     }
 
     const token = tokenSign(user)
 
-    res.status(201).json({message: "Usuario logueado correctamente",user, token})
+    res.status(200).json({message: "Usuario logueado correctamente",user, token})
 }
 
 const updateDatosPersonales = async (req, res) => {

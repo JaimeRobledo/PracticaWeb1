@@ -6,7 +6,7 @@ const validateResults = (req, res, next) => {
         return next()
 
     } catch (error) {
-        res.status(403)
+        res.status(401)
         return res.send({errors: error.array()})
     }
 }  
