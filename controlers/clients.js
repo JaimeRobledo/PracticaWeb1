@@ -56,9 +56,20 @@ const updateClient = async (req, res) => {
 
   const listarClients = async (req, res) => {
     try {
-      const token = req.headers.authorization?.split(' ').pop();
-      const dataToken = await verifyToken(token);
-      if (!dataToken) return handleHttpError(res, "INVALID_TOKEN", 401);
+      if (!req.headers.authorization) {
+        handleHttpError(res, "NOT_TOKEN", 401)
+        return
+      }
+      // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
+      const token = req.headers.authorization.split(' ').pop()
+      //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
+      const dataToken = await verifyToken(token)
+      console.log(dataToken)
+
+      if(!dataToken) {
+          handleHttpError(res, "INVALID_TOKEN", 401)
+          return
+      }
   
       const { _id: usuarioId, companiaId } = dataToken;
   
@@ -73,9 +84,20 @@ const updateClient = async (req, res) => {
 
   const encontrarClient = async (req, res) => {
     try {
-      const token = req.headers.authorization?.split(' ').pop();
-      const dataToken = await verifyToken(token);
-      if (!dataToken) return handleHttpError(res, "INVALID_TOKEN", 401);
+      if (!req.headers.authorization) {
+          handleHttpError(res, "NOT_TOKEN", 401)
+          return
+      }
+      // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
+      const token = req.headers.authorization.split(' ').pop()
+      //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
+      const dataToken = await verifyToken(token)
+      console.log(dataToken)
+
+      if(!dataToken) {
+          handleHttpError(res, "INVALID_TOKEN", 401)
+          return
+      }
   
       const { _id: usuarioId, companiaId } = dataToken;
       const { id } = req.params;
@@ -132,9 +154,20 @@ const deleteClient = async (req, res) => {
 
 const listarArchivados = async (req, res) => {
     try {
-        const token = req.headers.authorization?.split(' ').pop();
-        const dataToken = await verifyToken(token);
-        if (!dataToken) return handleHttpError(res, "INVALID_TOKEN", 401);
+        if (!req.headers.authorization) {
+          handleHttpError(res, "NOT_TOKEN", 401)
+          return
+        }
+        // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
+        const token = req.headers.authorization.split(' ').pop()
+        //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
+        const dataToken = await verifyToken(token)
+        console.log(dataToken)
+
+        if(!dataToken) {
+            handleHttpError(res, "INVALID_TOKEN", 401)
+            return
+        }
     
         const { _id: usuarioId, companiaId } = dataToken;
     
@@ -147,6 +180,41 @@ const listarArchivados = async (req, res) => {
       }
 }
 
+const recuperarCliente = async (req, res) => {
+    try {
+        if (!req.headers.authorization) {
+            handleHttpError(res, "NOT_TOKEN", 401)
+            return
+        }
+        // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
+        const token = req.headers.authorization.split(' ').pop()
+        //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
+        const dataToken = await verifyToken(token)
+        console.log(dataToken)
+
+        if(!dataToken) {
+            handleHttpError(res, "INVALID_TOKEN", 401)
+            return
+        }
+    
+        const { _id: usuarioId, companiaId } = dataToken;
+        const { id } = req.params;
+    
+        const cliente = await clientModel.findOneWithDeleted({ _id: id, usuarioId, companiaId })
+
+        if (!cliente) {
+            return res.status(404).json({ message: "Cliente no encontrado o no autorizado" })
+        }
+
+        // Restaurar con mongoose-delete
+        await cliente.restore()
+
+        return res.status(200).json({ message: "Cliente recuperado correctamente" })
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ message: "Error al recuperar el cliente" })
+    }
+}
 
 
-module.exports = {crearCliente, updateClient, listarClients, encontrarClient, deleteClient, listarArchivados}
+module.exports = {crearCliente, updateClient, listarClients, encontrarClient, deleteClient, listarArchivados, recuperarCliente}
