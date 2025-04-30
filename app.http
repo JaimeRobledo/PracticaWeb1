@@ -6,7 +6,7 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-    "email": "user3@gmail.com",
+    "email": "user4@gmail.com",
     "password": "123456789"
 }
 
@@ -14,10 +14,10 @@ Content-Type: application/json
 
 POST http://localhost:3000/api/users/validate
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEwZmUxYzdiMTBjYWU0ZTVkZjEzMWUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ1OTQ0MDkyLCJleHAiOjE3NDU5NTEyOTJ9.r1DSqquXUazNZdPXYMMl0osiKTAP2oAglDzl87Fz1M4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDI5MTc1LCJleHAiOjE3NDYwMzYzNzV9.LQ64q3ib7IUlfYW53rWEJtj5qoEkVO0oz7fhasEQC6E
 
 {
-    "codigo_validacion": "429420"
+    "codigo_validacion": "965245"
 }
 
 ###
@@ -25,7 +25,7 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-    "email": "user33@gmail.com",
+    "email": "user4@gmail.com",
     "password": "123456789"
 }
 
@@ -135,8 +135,8 @@ POST http://localhost:3000/api/clients/crearCliente
 Content-Type: application/json
 
 {
-  "nombre": "ACS",
-  "cif": "D52921210",
+  "nombre": "FCC",
+  "cif": "D52928910",
   "address": {
     "street": "Felipe II",
     "number": 22,
@@ -144,30 +144,42 @@ Content-Type: application/json
     "city": "Móstoles",
     "province": "Madrid"
   },
-  "usuarioId": "6810fe1c7b10cae4e5df131e"
+  "usuarioId": "681249de719a52343e18f331"
 }
 
 ###
-PUT http://localhost:3000/api/clients/actualizarCliente/6811018bfb4172155a05651f
+PUT http://localhost:3000/api/clients/actualizarCliente/68124b2f26b4f7af870121b4
 Content-Type: application/json
 
 {
-  "nombre": "FCC",
-  "cif": "D52921210",
+  "nombre": "AMG",
+  "cif": "D89921210",
   "address": {
-    "street": "Felipe II",
-    "number": 22,
+    "street": "Maranillo 5",
+    "number": 52,
     "postal": 28936,
     "city": "Móstoles",
     "province": "Madrid"
   },
-  "usuarioId": "6810fe1c7b10cae4e5df131e"
+  "usuarioId": "68124a7726b4f7af870121a5"
 }
 
 ###
 GET http://localhost:3000/api/clients/listarClientes
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE
 
 ###
-GET http://localhost:3000/api/clients/encontrarCliente/6811018bfb4172155a05651f
+GET http://localhost:3000/api/clients/encontrarCliente/68124b2f26b4f7af870121b4
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE
+
+###
+DELETE http://localhost:3000/api/clients/borrarCliente/68124b2f26b4f7af870121b4?soft=true
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE
+
+###
+DELETE http://localhost:3000/api/clients/borrarCliente/68124b2f26b4f7af870121b4?soft=false
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE

@@ -205,6 +205,7 @@ const getPorJWT = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
+    
     if (!req.headers.authorization) {
         handleHttpError(res, "NOT_TOKEN", 401)
         return

@@ -13,7 +13,7 @@ const crearCliente = async (req, res) => {
           return res.status(400).json({ message: "El cliente ya existe para este usuario o compañía" })
         }
     
-        const nuevoCliente = new clientModel({
+        const nuevoCliente = await clientModel.create({
           nombre,
           cif,
           address,
@@ -53,18 +53,44 @@ const updateClient = async (req, res) => {
     }
   }
 
-const listarClients = async (req, res) => {
-    const result = await clientModel.find()
-    console.log("Clients encontrados", result)
-    res.status(201).json(result)
-}
+  const listarClients = async (req, res) => {
+    try {
+      const token = req.headers.authorization?.split(' ').pop();
+      const dataToken = await verifyToken(token);
+      if (!dataToken) return handleHttpError(res, "INVALID_TOKEN", 401);
+  
+      const { _id: usuarioId, companiaId } = dataToken;
+  
+      const result = await clientModel.findOne({usuarioId, companiaId});
+  
+      return res.status(200).json(result);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Error al obtener los clientes" });
+    }
+  };
 
-const encontrarClient = async (req, res) => {
-    const {id} = req.params
-    const result = await clientModel.findById(id)
-    console.log("Cliente encontrado", result)
-    res.status(201).json(result)
-}
+  const encontrarClient = async (req, res) => {
+    try {
+      const token = req.headers.authorization?.split(' ').pop();
+      const dataToken = await verifyToken(token);
+      if (!dataToken) return handleHttpError(res, "INVALID_TOKEN", 401);
+  
+      const { _id: usuarioId, companiaId } = dataToken;
+      const { id } = req.params;
+  
+      const result = await clientModel.findOne({ _id: id, usuarioId, companiaId});
+  
+      if (!result) {
+        return res.status(404).json({ message: "Cliente no encontrado o no autorizado" });
+      }
+  
+      return res.status(200).json(result);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Error al obtener el cliente" });
+    }
+  };
 
 const deleteClient = async (req, res) => {
     if (!req.headers.authorization) {
@@ -76,28 +102,30 @@ const deleteClient = async (req, res) => {
     //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
     const dataToken = await verifyToken(token)
     console.log(dataToken)
+
     if(!dataToken) {
         handleHttpError(res, "INVALID_TOKEN", 401)
         return
     }
 
+    const clientId = req.params.id;
+
     const softDelete = req.query.soft !== "false"
 
-    if(softDelete){
-        const user = await clientModel.updateOne({_id: dataToken._id}, {estado: false})
-        if (!user) {
-            return res.status(404).json({ message: "Cliente no encontrado" });
-        
-        }
-        res.status(201).json({message: "Cliente desactivado correctamente:",user})
-    }else{
-        const user = await clientModel.deleteOne({_id: dataToken._id})
-        if (!user) {
-            return res.status(404).json({ message: "Cliente no encontrado" });
-        
-        }
-        res.status(201).json({message: "Cliente eliminado correctamente:",user})
+    if (softDelete) {
+      const client = await clientModel.findOne({ _id: clientId, usuarioId: dataToken._id });
+      if (!client) return res.status(404).json({ message: "Cliente no encontrado o no autorizado" });
+
+      await client.delete(); // método de mongoose-delete
+      return res.status(200).json({ message: "Cliente desactivado correctamente" });
     }
+
+    const result = await clientModel.deleteOne({ _id: clientId, usuarioId: dataToken._id });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "Cliente no encontrado o no autorizado para hard delete" });
+    }
+
+    return res.status(200).json({ message: "Cliente eliminado correctamente" });
 
 }
 

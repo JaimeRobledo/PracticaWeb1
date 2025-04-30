@@ -40,10 +40,6 @@ const ClientScheme = new mongoose.Schema(
         ref: 'Company',  // Asocia a una compañía (si es necesario)
         required: false,
       },
-      archivado: {
-        type: Boolean,
-        default: false,  // Para soft delete
-      },
     },
     {
         timestamps: true, // TODO createdAt, updatedAt
