@@ -1,6 +1,8 @@
 const userModel = require('../models/users.js')
 const {encrypt, compare} = require('../utils/validatePassword.js')
 const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
+const { handleHttpError } = require('../utils/handleError.js');
+
 
 const getItems = async (req, res) => {
     const result = await userModel.find()

@@ -135,28 +135,28 @@ POST http://localhost:3000/api/clients/crearCliente
 Content-Type: application/json
 
 {
-  "nombre": "FCC",
-  "cif": "D52928910",
+  "nombre": "Amazon",
+  "cif": "D89920110",
   "address": {
-    "street": "Felipe II",
-    "number": 22,
+    "street": "Felipe I",
+    "number": 42,
     "postal": 28936,
     "city": "Móstoles",
     "province": "Madrid"
   },
-  "usuarioId": "681249de719a52343e18f331"
+  "usuarioId": "68124a7726b4f7af870121a5"
 }
 
 ###
-PUT http://localhost:3000/api/clients/actualizarCliente/68124b2f26b4f7af870121b4
+PUT http://localhost:3000/api/clients/actualizarCliente/6812590fa1c02f5cdd12bf94
 Content-Type: application/json
 
 {
-  "nombre": "AMG",
-  "cif": "D89921210",
+  "nombre": "Amazon",
+  "cif": "D89920110",
   "address": {
-    "street": "Maranillo 5",
-    "number": 52,
+    "street": "Maranillo 2",
+    "number": 62,
     "postal": 28936,
     "city": "Móstoles",
     "province": "Madrid"
@@ -170,16 +170,16 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE
 
 ###
-GET http://localhost:3000/api/clients/encontrarCliente/68124b2f26b4f7af870121b4
+GET http://localhost:3000/api/clients/encontrarCliente/6812599ea1c02f5cdd12bfa0
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE
 
 ###
-DELETE http://localhost:3000/api/clients/borrarCliente/68124b2f26b4f7af870121b4?soft=true
+DELETE http://localhost:3000/api/clients/borrarCliente/6812599ea1c02f5cdd12bfa0?soft=true
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE
 
 ###
-DELETE http://localhost:3000/api/clients/borrarCliente/68124b2f26b4f7af870121b4?soft=false
+DELETE http://localhost:3000/api/clients/borrarCliente/6812599ea1c02f5cdd12bfa0?soft=false
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE

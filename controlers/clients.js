@@ -1,6 +1,7 @@
 const clientModel = require('../models/clients.js')
 const {encrypt, compare} = require('../utils/validatePassword.js')
 const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
+const { handleHttpError } = require('../utils/handleError.js');
 
 const crearCliente = async (req, res) => {
     try {
@@ -128,5 +129,24 @@ const deleteClient = async (req, res) => {
     return res.status(200).json({ message: "Cliente eliminado correctamente" });
 
 }
+
+const listarArchivados = async (req, res) => {
+    try {
+        const token = req.headers.authorization?.split(' ').pop();
+        const dataToken = await verifyToken(token);
+        if (!dataToken) return handleHttpError(res, "INVALID_TOKEN", 401);
+    
+        const { _id: usuarioId, companiaId } = dataToken;
+    
+        const result = await clientModel.findDeleted({usuarioId, companiaId});
+    
+        return res.status(200).json(result);
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Error al obtener los clientes archivados" });
+      }
+}
+
+
 
 module.exports = {crearCliente, updateClient, listarClients, encontrarClient, deleteClient}
