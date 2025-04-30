@@ -56,24 +56,9 @@ const updateClient = async (req, res) => {
 
   const listarClients = async (req, res) => {
     try {
-      if (!req.headers.authorization) {
-        handleHttpError(res, "NOT_TOKEN", 401)
-        return
-      }
-      // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-      const token = req.headers.authorization.split(' ').pop()
-      //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-      const dataToken = await verifyToken(token)
-      console.log(dataToken)
-
-      if(!dataToken) {
-          handleHttpError(res, "INVALID_TOKEN", 401)
-          return
-      }
+      const { _id: usuarioId, companiaId } = req.user
   
-      const { _id: usuarioId, companiaId } = dataToken;
-  
-      const result = await clientModel.findOne({usuarioId, companiaId});
+      const result = await clientModel.find({usuarioId, companiaId});
   
       return res.status(200).json(result);
     } catch (error) {
@@ -84,22 +69,7 @@ const updateClient = async (req, res) => {
 
   const encontrarClient = async (req, res) => {
     try {
-      if (!req.headers.authorization) {
-          handleHttpError(res, "NOT_TOKEN", 401)
-          return
-      }
-      // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-      const token = req.headers.authorization.split(' ').pop()
-      //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-      const dataToken = await verifyToken(token)
-      console.log(dataToken)
-
-      if(!dataToken) {
-          handleHttpError(res, "INVALID_TOKEN", 401)
-          return
-      }
-  
-      const { _id: usuarioId, companiaId } = dataToken;
+      const { _id: usuarioId, companiaId } = req.user
       const { id } = req.params;
   
       const result = await clientModel.findOne({ _id: id, usuarioId, companiaId});
@@ -116,34 +86,21 @@ const updateClient = async (req, res) => {
   };
 
 const deleteClient = async (req, res) => {
-    if (!req.headers.authorization) {
-        handleHttpError(res, "NOT_TOKEN", 401)
-        return
-    }
-    // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-    const token = req.headers.authorization.split(' ').pop()
-    //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-    const dataToken = await verifyToken(token)
-    console.log(dataToken)
-
-    if(!dataToken) {
-        handleHttpError(res, "INVALID_TOKEN", 401)
-        return
-    }
+    const { _id: usuarioId } = req.user
 
     const clientId = req.params.id;
 
     const softDelete = req.query.soft !== "false"
 
     if (softDelete) {
-      const client = await clientModel.findOne({ _id: clientId, usuarioId: dataToken._id });
+      const client = await clientModel.findOne({ _id: clientId, usuarioId });
       if (!client) return res.status(404).json({ message: "Cliente no encontrado o no autorizado" });
 
       await client.delete(); // método de mongoose-delete
       return res.status(200).json({ message: "Cliente desactivado correctamente" });
     }
 
-    const result = await clientModel.deleteOne({ _id: clientId, usuarioId: dataToken._id });
+    const result = await clientModel.deleteOne({ _id: clientId, usuarioId });
     if (result.deletedCount === 0) {
       return res.status(404).json({ message: "Cliente no encontrado o no autorizado para hard delete" });
     }
@@ -154,22 +111,7 @@ const deleteClient = async (req, res) => {
 
 const listarArchivados = async (req, res) => {
     try {
-        if (!req.headers.authorization) {
-          handleHttpError(res, "NOT_TOKEN", 401)
-          return
-        }
-        // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-        const token = req.headers.authorization.split(' ').pop()
-        //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-        const dataToken = await verifyToken(token)
-        console.log(dataToken)
-
-        if(!dataToken) {
-            handleHttpError(res, "INVALID_TOKEN", 401)
-            return
-        }
-    
-        const { _id: usuarioId, companiaId } = dataToken;
+      const { _id: usuarioId, companiaId } = req.user
     
         const result = await clientModel.findDeleted({usuarioId, companiaId});
     
@@ -182,22 +124,7 @@ const listarArchivados = async (req, res) => {
 
 const recuperarCliente = async (req, res) => {
     try {
-        if (!req.headers.authorization) {
-            handleHttpError(res, "NOT_TOKEN", 401)
-            return
-        }
-        // Nos llega la palabra reservada Bearer (es un estándar) y el Token, así que me quedo con la última parte
-        const token = req.headers.authorization.split(' ').pop()
-        //Del token, miramos en Payload (revisar verifyToken de utils/handleJwt)
-        const dataToken = await verifyToken(token)
-        console.log(dataToken)
-
-        if(!dataToken) {
-            handleHttpError(res, "INVALID_TOKEN", 401)
-            return
-        }
-    
-        const { _id: usuarioId, companiaId } = dataToken;
+      const { _id: usuarioId, companiaId } = req.user
         const { id } = req.params;
     
         const cliente = await clientModel.findOneWithDeleted({ _id: id, usuarioId, companiaId })
