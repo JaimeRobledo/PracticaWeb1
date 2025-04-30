@@ -5,6 +5,52 @@ const userRouter = express.Router();
 const {authMiddleware} = require('../middleware/authMiddleware.js');
 const { uploadMiddleware} = require("../utils/handleStorage.js")
 
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: Operaciones relacionadas con los usuarios
+ */
+
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Obtener todos los usuarios
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: Lista de usuarios
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - email
+ *         - password
+ *         - role
+ *       properties:
+ *         email:
+ *           type: string
+ *         password:
+ *           type: string
+ *         role:
+ *           type: string
+ *           enum: [user, admin]
+ *         estado:
+ *           type: boolean
+ *         intentos:
+ *           type: number
+ *         codigo_validacion:
+ *           type: string
+ *         bloqueado:
+ *           type: boolean
+ */
+
 
 userRouter.use(express.json());
 
