@@ -7,27 +7,13 @@ const { handleHttpError } = require('../utils/handleError.js');
 const crearAlbaran = async (req, res) => {
 
     try {
-        const {userId, clientId, projectId, format, workdate, company, hours, quantity, descriptionId, multi, materials, concepts} = matchedData(req);
-        const nuevoAlbaran = await albaranModel.create({
-            userId,
-            clientId,
-            projectId,
-            format,
-            workdate,
-            company,
-            hours,
-            quantity,
-            descriptionId,
-            multi,
-            materials,
-            concepts
-        });
-        await nuevoAlbaran.save();
-        res.status(201).json({message: "Albaran creado", albaran: nuevoAlbaran });
-    } catch (error) {
-        handleHttpError(res, "ERROR_CREATE_ALBARAN", 500);
+        const body = matchedData(req)
+        body.userId = req.user._id;
+        const newAlbaran = await albaranModel.create(body)
+        res.status(201).send({data: newAlbaran})
+    } catch (e) {
+        handleHttpError(res, "ERROR_ALBARAN_CREATE", 500)
     }
-
 }
 
 module.exports = {crearAlbaran}

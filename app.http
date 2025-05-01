@@ -289,6 +289,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 
 //-----------------------------------------------------ALBARANES-----------------------------------------------------//
 
+// Ejemplo 1: Albarán simple de horas
+
 ###
 POST http://localhost:3000/api/albaranes/crearAlbaran
 Content-Type: application/json
@@ -298,9 +300,130 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
   "clientId": "6812590fa1c02f5cdd12bf94",
   "projectId": "68135b627d4757e86505dd14",
   "format": "hours",
-  "material": "cement",
   "hours": 8,
-  "description": "my description",
-  "workdate": "2024-02-01"
+  "descriptionId": "6812590fa1c02f5cdd12bf95",
+  "description": "Desarrollo de funcionalidad login",
+  "workdate": "2024-05-01"
+}
+
+// Ejemplo 2: Albarán de material simple
+
+###
+POST http://localhost:3000/api/albaranes/crearAlbaran
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTExNzU0LCJleHAiOjE3NDYxMTg5NTR9.7sPhHCois_eYzEW9JUvS2i6suHq66Fr_t4AImzbJMAY
+
+{
+  "clientId": "6812590fa1c02f5cdd12bf94",
+  "projectId": "68135b627d4757e86505dd14",
+  "format": "material",
+  "quantity": 5,
+  "descriptionId": "6812590fa1c02f5cdd12bf96",
+  "description": "Cemento Portland",
+  "workdate": "2024-05-01"
+}
+
+// Ejemplo 3: Albarán con múltiples entradas de horas
+
+###
+POST http://localhost:3000/api/albaranes/crearAlbaran
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTExNzU0LCJleHAiOjE3NDYxMTg5NTR9.7sPhHCois_eYzEW9JUvS2i6suHq66Fr_t4AImzbJMAY
+
+{
+  "clientId": "6812590fa1c02f5cdd12bf94",
+  "projectId": "68135b627d4757e86505dd14",
+  "format": "hours",
+  "hours": 20, // Total de horas
+  "descriptionId": "6812590fa1c02f5cdd12bf97",
+  "description": "Desarrollo proyecto web",
+  "workdate": "2024-05-01",
+  "multi": [
+    {
+      "name": "Juan Pérez",
+      "hours": 8,
+      "description": "Frontend development",
+      "descriptionId": "6812590fa1c02f5cdd12bf98"
+    },
+    {
+      "name": "María López",
+      "hours": 6,
+      "description": "Backend development",
+      "descriptionId": "6812590fa1c02f5cdd12bf99"
+    },
+    {
+      "name": "Carlos Gómez",
+      "hours": 6,
+      "description": "Database design",
+      "descriptionId": "6812590fa1c02f5cdd12bfa0"
+    }
+  ]
+}
+
+// Ejemplo 4: Albarán con múltiples materiales
+
+###
+POST http://localhost:3000/api/albaranes/crearAlbaran
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTExNzU0LCJleHAiOjE3NDYxMTg5NTR9.7sPhHCois_eYzEW9JUvS2i6suHq66Fr_t4AImzbJMAY
+
+{
+  "clientId": "6812590fa1c02f5cdd12bf94",
+  "projectId": "68135b627d4757e86505dd14",
+  "format": "material",
+  "quantity": 15, // Total de unidades
+  "descriptionId": "6812590fa1c02f5cdd12bfa1",
+  "description": "Materiales de construcción",
+  "workdate": "2024-05-01",
+  "materials": [
+    {
+      "description": "Cemento Portland",
+      "quantity": 5,
+      "descriptionId": "6812590fa1c02f5cdd12bfa2"
+    },
+    {
+      "description": "Arena fina",
+      "quantity": 7,
+      "descriptionId": "6812590fa1c02f5cdd12bfa3"
+    },
+    {
+      "description": "Grava",
+      "quantity": 3,
+      "descriptionId": "6812590fa1c02f5cdd12bfa4"
+    }
+  ]
+}
+
+// Ejemplo 5: Albarán con formato "any" y conceptos
+
+###
+POST http://localhost:3000/api/albaranes/crearAlbaran
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTExNzU0LCJleHAiOjE3NDYxMTg5NTR9.7sPhHCois_eYzEW9JUvS2i6suHq66Fr_t4AImzbJMAY
+
+{
+  "clientId": "6812590fa1c02f5cdd12bf94",
+  "projectId": "68135b627d4757e86505dd14",
+  "format": "any",
+  "descriptionId": "6812590fa1c02f5cdd12bfa5",
+  "description": "Servicios profesionales",
+  "workdate": "2024-05-01",
+  "concepts": [
+    {
+      "workerName": "Ingeniero senior",
+      "quantity": 4,
+      "conceptId": "6812590fa1c02f5cdd12bfa6"
+    },
+    {
+      "workerName": "Consultor técnico",
+      "quantity": 2,
+      "conceptId": "6812590fa1c02f5cdd12bfa7"
+    },
+    {
+      "workerName": "Analista de sistemas",
+      "quantity": 3,
+      "conceptId": "6812590fa1c02f5cdd12bfa8"
+    }
+  ]
 }
 
