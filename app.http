@@ -25,7 +25,7 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-    "email": "user5@gmail.com",
+    "email": "user4@gmail.com",
     "password": "123456789"
 }
 
@@ -135,11 +135,11 @@ POST http://localhost:3000/api/clients/crearCliente
 Content-Type: application/json
 
 {
-  "nombre": "Amazon",
-  "cif": "D89920110",
+  "nombre": "Dijon",
+  "cif": "D89920123",
   "address": {
-    "street": "Felipe I",
-    "number": 42,
+    "street": "Felipe V",
+    "number": 82,
     "postal": 28936,
     "city": "Móstoles",
     "province": "Madrid"
@@ -152,8 +152,8 @@ PUT http://localhost:3000/api/clients/actualizarCliente/6812590fa1c02f5cdd12bf94
 Content-Type: application/json
 
 {
-  "nombre": "Amazon",
-  "cif": "D89920110",
+  "nombre": "GOOGLE",
+  "cif": "D89920123",
   "address": {
     "street": "Maranillo 2",
     "number": 62,
@@ -167,29 +167,29 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/api/clients/listarClientes
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
-GET http://localhost:3000/api/clients/encontrarCliente/6812599ea1c02f5cdd12bfa0
+GET http://localhost:3000/api/clients/encontrarCliente/68134f65ec81bfe5d61f6562
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
-DELETE http://localhost:3000/api/clients/borrarCliente/6812599ea1c02f5cdd12bfa0?soft=true
+DELETE http://localhost:3000/api/clients/borrarCliente/68134f65ec81bfe5d61f6562?soft=true
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
-DELETE http://localhost:3000/api/clients/borrarCliente/6812599ea1c02f5cdd12bfa0?soft=false
+DELETE http://localhost:3000/api/clients/borrarCliente/68134f65ec81bfe5d61f6562?soft=false
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
 GET http://localhost:3000/api/clients/listarArchivados
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
-PATCH  http://localhost:3000/api/clients/recuperarCliente/6812599ea1c02f5cdd12bfa0
+PATCH  http://localhost:3000/api/clients/recuperarCliente/68134f65ec81bfe5d61f6562
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDMyMTc5LCJleHAiOjE3NDYwMzkzNzl9.BOW43aMc5xDssZAPaJwfx-53CRxjOwfGxggybRJzqLE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
