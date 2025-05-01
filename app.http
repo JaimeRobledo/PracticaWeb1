@@ -334,7 +334,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
   "clientId": "6812590fa1c02f5cdd12bf94",
   "projectId": "68135b627d4757e86505dd14",
   "format": "hours",
-  "hours": 20, // Total de horas
+  "hours": 20,
   "descriptionId": "6812590fa1c02f5cdd12bf97",
   "description": "Desarrollo proyecto web",
   "workdate": "2024-05-01",
@@ -371,7 +371,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
   "clientId": "6812590fa1c02f5cdd12bf94",
   "projectId": "68135b627d4757e86505dd14",
   "format": "material",
-  "quantity": 15, // Total de unidades
+  "quantity": 15,
   "descriptionId": "6812590fa1c02f5cdd12bfa1",
   "description": "Materiales de construcción",
   "workdate": "2024-05-01",
