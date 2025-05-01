@@ -132,24 +132,22 @@ const updateProyecto = async (req, res) => {
 const deleteProyecto = async (req, res) => {
     const usuarioId = req.user._id;
     const proyectoId = req.params.id;
-    const { clientId } = req.query;
 
 
     const softDelete = req.query.soft !== "false"
 
-    const cliente = await verificarClienteDelUsuario(clientId, usuarioId);
-    console.log("Resultado de verificación:", cliente);
-    if (!cliente) return res.status(403).json({ message: "Cliente no autorizado" });
+    const clientes = await clientModel.find({ usuarioId });
+    const clienteIds = clientes.map(c => c._id);
 
     if (softDelete) {
-      const proyecto = await projectModel.findOne({ _id: proyectoId, clientId  });
+      const proyecto = await projectModel.findOne({ _id: proyectoId, clientId: { $in: clienteIds } });
       if (!proyecto) return res.status(404).json({ message: "Proyecto no encontrado o no autorizado" });
 
       await proyecto.delete(); // método de mongoose-delete
       return res.status(200).json({ message: "Proyecto desactivado correctamente" });
     }
 
-    const result = await projectModel.deleteOne({ _id: proyectoId, clientId  });
+    const result = await projectModel.deleteOne({ _id: proyectoId, clientId: { $in: clienteIds }  });
     if (result.deletedCount === 0) {
       return res.status(404).json({ message: "Proyecto no encontrado o no autorizado para hard delete" });
     }
@@ -161,13 +159,10 @@ const deleteProyecto = async (req, res) => {
 const listarArchivados = async (req, res) => {
     try {
         const usuarioId = req.user._id;
-        const { clientId } = req.query;
-
-        const cliente = await verificarClienteDelUsuario(clientId, usuarioId);
-        console.log("Resultado de verificación:", cliente);
-        if (!cliente) return res.status(403).json({ message: "Cliente no autorizado" });
+        const clientes = await clientModel.find({ usuarioId });
+        const clienteIds = clientes.map(c => c._id);
     
-        const result = await projectModel.findDeleted({clientId});
+        const result = await projectModel.findDeleted({clientId: { $in: clienteIds }});
     
         return res.status(200).json(result);
       } catch (error) {
@@ -180,13 +175,11 @@ const recuperarProyecto = async (req, res) => {
     try {
         const usuarioId = req.user._id;
         const { id } = req.params;
-        const { clientId } = req.query;
+        const clientes = await clientModel.find({ usuarioId });
+        const clienteIds = clientes.map(c => c._id);
 
-        const cliente = await verificarClienteDelUsuario(clientId, usuarioId);
-        console.log("Resultado de verificación:", cliente);
-        if (!cliente) return res.status(403).json({ message: "Cliente no autorizado" });
     
-        const proyecto = await projectModel.findOneWithDeleted({ _id: id, clientId })
+        const proyecto = await projectModel.findOneWithDeleted({ _id: id, clientId: { $in: clienteIds } })
 
         if (!proyecto) {
             return res.status(404).json({ message: "Proyecto no encontrado o no autorizado" })

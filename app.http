@@ -258,12 +258,12 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
-GET http://localhost:3000/api/projects/encontrarProyecto/681364899151d492326012eb
+GET http://localhost:3000/api/projects/encontrarProyecto/68135b627d4757e86505dd14
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
-DELETE http://localhost:3000/api/projects/borrarProyecto/6813610cfc6157722bce11a6?soft=true
+DELETE http://localhost:3000/api/projects/borrarProyecto/68135b627d4757e86505dd14?soft=true
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
