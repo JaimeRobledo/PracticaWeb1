@@ -1,4 +1,4 @@
-const projectModel = require('../models/clients.js')
+const projectModel = require('../models/projects.js')
 const { matchedData } = require("express-validator")
 const {encrypt, compare} = require('../utils/validatePassword.js')
 const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
@@ -6,7 +6,7 @@ const { handleHttpError } = require('../utils/handleError.js');
 
 const crearProyecto = async (req, res) => {
     try {
-        const { nombre, cif, address, usuarioId, clientId } = req.body
+        const { nombre, codigo, projectCode, fechaInicio, fechaFinal, notes, address, usuarioId, clientId } = req.body
     
         // Compruebo si ya existe un cliente con ese CIF para ese usuario o su compañía
         const proyectoExistente = await projectModel.findOne({cif, usuarioId, clientId})
