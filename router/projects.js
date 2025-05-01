@@ -7,8 +7,8 @@ const projectRouter = express.Router();
 
 projectRouter.use(express.json());
 
-projectRouter.post('/crearProyecto', validatorCrearProyecto ,crearProyecto);
-projectRouter.put('/actualizarProyecto/:id', validatorUpdateProyecto, updateProyecto);
+projectRouter.post('/crearProyecto',authMiddleware, validatorCrearProyecto ,crearProyecto);
+projectRouter.put('/actualizarProyecto/:id',authMiddleware, validatorUpdateProyecto, updateProyecto);
 projectRouter.get('/listarProyectos',authMiddleware, listarProyectos);
 projectRouter.get('/encontrarProyecto/:id',authMiddleware, encontrarProyecto);
 projectRouter.delete('/borrarProyecto/:id',authMiddleware, deleteProyecto);

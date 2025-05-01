@@ -138,10 +138,11 @@ Content-Type: image/jpeg
 ###
 POST http://localhost:3000/api/clients/crearCliente
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 {
-  "nombre": "Dijon",
-  "cif": "D89920123",
+  "nombre": "Paprika",
+  "cif": "D89920127",
   "address": {
     "street": "Felipe V",
     "number": 82,
@@ -155,10 +156,11 @@ Content-Type: application/json
 ###
 PUT http://localhost:3000/api/clients/actualizarCliente/6812590fa1c02f5cdd12bf94
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 {
-  "nombre": "GOOGLE",
-  "cif": "D89920123",
+  "nombre": "WINDOWS",
+  "cif": "D89930127",
   "address": {
     "street": "Maranillo 2",
     "number": 62,
@@ -206,10 +208,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 ###
 POST http://localhost:3000/api/projects/crearProyecto
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 {
-  "nombre": "Meteoritos rojos",
-  "codigo": "69696969NCK",
+  "nombre": "Meteoritos AMARILLOS",
+  "codigo": "69696969NCKTAR",
   "projectCode": "1234567870",
   "fechaInicio": "2023-10-01",
   "fechaFinal": "2023-10-31",
@@ -226,13 +229,14 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3000/api/projects/actualizarProyecto/6813610cfc6157722bce11a6
+PUT http://localhost:3000/api/projects/actualizarProyecto/68136b21e2de182f7dd50bba
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 {
-  "nombre": "Pisos meteoricos",
-  "codigo": "69696969WINDOWS",
-  "projectCode": "1234567890",
+  "nombre": "Pisos AMARILLOS",
+  "codigo": "69696969NCKTAR",
+  "projectCode": "1234567870",
   "fechaInicio": "2023-10-01",
   "fechaFinal": "2023-10-31",
   "notes": "Proyecto de prueba actualizando 3",
@@ -278,6 +282,9 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
-PATCH  http://localhost:3000/api/projects/recuperarProyecto/6813610cfc6157722bce11a6
+PATCH  http://localhost:3000/api/projects/recuperarProyecto/68135b627d4757e86505dd14
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
+
+
+//-----------------------------------------------------ALBARANES-----------------------------------------------------//

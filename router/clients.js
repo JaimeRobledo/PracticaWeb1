@@ -7,8 +7,8 @@ const clientRouter = express.Router();
 
 clientRouter.use(express.json());
 
-clientRouter.post('/crearCliente', validatorCrearCliente ,crearCliente);
-clientRouter.put('/actualizarCliente/:id', validatorUpdateClient, updateClient);
+clientRouter.post('/crearCliente', authMiddleware,validatorCrearCliente ,crearCliente);
+clientRouter.put('/actualizarCliente/:id', authMiddleware,validatorUpdateClient, updateClient);
 clientRouter.get('/listarClientes',authMiddleware, listarClients);
 clientRouter.get('/encontrarCliente/:id',authMiddleware, encontrarClient);
 clientRouter.delete('/borrarCliente/:id',authMiddleware, deleteClient);
