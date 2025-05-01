@@ -5,15 +5,15 @@ const {authMiddleware} = require('../middleware/authMiddleware.js');
 const projectRouter = express.Router();
 
 
-clientRouter.use(express.json());
+projectRouter.use(express.json());
 
-clientRouter.post('/crearProyecto', validatorCrearProyecto ,crearProyecto);
-clientRouter.put('/actualizarProyecto/:id', validatorUpdateProyecto, updateProyecto);
-clientRouter.get('/listarProyectos',authMiddleware, listarProyectos);
-clientRouter.get('/encontrarProyecto/:id',authMiddleware, encontrarProyecto);
-clientRouter.delete('/borrarProyecto/:id',authMiddleware, deleteProyecto);
-clientRouter.get('/listarArchivados',authMiddleware, listarArchivados);
-clientRouter.patch('/recuperarProyecto/:id',authMiddleware, recuperarProyecto);
+projectRouter.post('/crearProyecto', validatorCrearProyecto ,crearProyecto);
+projectRouter.put('/actualizarProyecto/:id', validatorUpdateProyecto, updateProyecto);
+projectRouter.get('/listarProyectos',authMiddleware, listarProyectos);
+projectRouter.get('/encontrarProyecto/:id',authMiddleware, encontrarProyecto);
+projectRouter.delete('/borrarProyecto/:id',authMiddleware, deleteProyecto);
+projectRouter.get('/listarArchivados',authMiddleware, listarArchivados);
+projectRouter.patch('/recuperarProyecto/:id',authMiddleware, recuperarProyecto);
 
 
 module.exports = projectRouter;

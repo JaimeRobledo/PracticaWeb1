@@ -222,20 +222,20 @@ Content-Type: application/json
     "province": "Madrid"
   },
   "usuarioId": "68124a7726b4f7af870121a5",
-  "clienteId": "6812590fa1c02f5cdd12bf94"
+  "clientId": "6812590fa1c02f5cdd12bf94"
 }
 
 ###
-PUT http://localhost:3000/api/projects/actualizarProyecto/6812590fa1c02f5cdd12bf94
+PUT http://localhost:3000/api/projects/actualizarProyecto/68135b627d4757e86505dd14
 Content-Type: application/json
 
 {
   "nombre": "Pisos Picados",
-  "codigo": "D89920123",
-  "projectCode": "D89920123",
+  "codigo": "69696969BETA",
+  "projectCode": "123456789",
   "fechaInicio": "2023-10-01",
   "fechaFinal": "2023-10-31",
-  "notes": "Proyecto de prueba",
+  "notes": "Proyecto de prueba actualizando",
   "address": {
     "street": "Felipe V",
     "number": 82,
@@ -244,7 +244,7 @@ Content-Type: application/json
     "province": "Madrid"
   },
   "usuarioId": "68124a7726b4f7af870121a5",
-  "clienteId": "6812590fa1c02f5cdd12bf94",
+  "clientId": "6812590fa1c02f5cdd12bf94"
 }
 
 ###
@@ -253,17 +253,17 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
-GET http://localhost:3000/api/projects/encontrarProyecto/68134f65ec81bfe5d61f6562
+GET http://localhost:3000/api/projects/encontrarProyecto/68135b627d4757e86505dd14
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
-DELETE http://localhost:3000/api/projects/borrarProyecto/68134f65ec81bfe5d61f6562?soft=true
+DELETE http://localhost:3000/api/projects/borrarProyecto/68135b627d4757e86505dd14?soft=true
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
-DELETE http://localhost:3000/api/projects/borrarProyecto/68134f65ec81bfe5d61f6562?soft=false
+DELETE http://localhost:3000/api/projects/borrarProyecto/68135b627d4757e86505dd14?soft=false
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
@@ -273,6 +273,6 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
-PATCH  http://localhost:3000/api/projects/recuperarProyecto/68134f65ec81bfe5d61f6562
+PATCH  http://localhost:3000/api/projects/recuperarProyecto/68135b627d4757e86505dd14
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM

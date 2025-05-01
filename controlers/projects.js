@@ -38,10 +38,10 @@ const crearProyecto = async (req, res) => {
 
 const updateProyecto = async (req, res) => {
     const { id } = req.params
-    const data = matchedData(req)
+    const { nombre, codigo, projectCode, fechaInicio, fechaFinal, notes, address, usuarioId, clientId } = req.body
   
     try {
-      const proyectoActualizado = await projectModel.findByIdAndUpdate({ _id: id, usuarioId: req.user._id }, data, { new: true })
+      const proyectoActualizado = await projectModel.findByIdAndUpdate( id, { nombre, codigo, projectCode, fechaInicio, fechaFinal, notes, address, usuarioId, clientId }, { new: true })
   
       if (!proyectoActualizado) {
         return res.status(404).json({ message: "Proyecto no encontrado" })
