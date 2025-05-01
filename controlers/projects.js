@@ -70,44 +70,64 @@ const updateProyecto = async (req, res) => {
 
   const listarProyectos = async (req, res) => {
     try {
-        const usuarioId = req.user._id;
-        const { clientId } = req.query;
-
-      const cliente = await verificarClienteDelUsuario(clientId, usuarioId);
-      console.log("Resultado de verificación:", cliente);
-        if (!cliente) return res.status(403).json({ message: "Cliente no autorizado" });
-  
-      const result = await projectModel.find({clientId});
-  
-      return res.status(200).json(result);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "Error al obtener los proyectos" });
-    }
-  };
+        const usuarioId = req.user._id; // ID del usuario
+        const clienteId = req.query.clientId; // Opcional: Si se pasa un clientId, filtra por ese cliente
+    
+        // Si se pasa un clientId en la query, buscar proyectos solo de ese cliente
+        if (clienteId) {
+          const cliente = await verificarClienteDelUsuario(clienteId, usuarioId);
+          if (!cliente) return res.status(403).json({ message: "Cliente no autorizado" });
+          
+          const proyectos = await projectModel.find({ clientId: clienteId });
+          return res.status(200).json(proyectos);
+        }
+    
+        // Si no se pasa un clientId, buscar todos los clientes asociados al usuario
+        const clientes = await clientModel.find({ usuarioId });
+        const clienteIds = clientes.map(c => c._id);
+    
+        const proyectos = await projectModel.find({ clientId: { $in: clienteIds } });
+        return res.status(200).json(proyectos);
+    
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Error al obtener los proyectos" });
+      }
+    };
 
   const encontrarProyecto = async (req, res) => {
     try {
-        const usuarioId = req.user._id;
-        const { id } = req.params;
-        const { clientId } = req.query;
-
-      const cliente = await verificarClienteDelUsuario(clientId, usuarioId);
-      console.log("Resultado de verificación:", cliente);
-        if (!cliente) return res.status(403).json({ message: "Cliente no autorizado" });
-  
-      const result = await projectModel.findOne({ _id: id, clientId});
-  
-      if (!result) {
-        return res.status(404).json({ message: "Proyecto no encontrado o no autorizado" });
+        const usuarioId = req.user._id; // ID del usuario actual
+        const { id } = req.params; // ID del proyecto a buscar
+        const clienteId = req.query.clientId; // Opcional: Filtra por clientId si se pasa en la query
+    
+        // Si se pasa un clientId, verificar que el cliente pertenece al usuario
+        if (clienteId) {
+          const cliente = await verificarClienteDelUsuario(clienteId, usuarioId);
+          if (!cliente) return res.status(403).json({ message: "Cliente no autorizado" });
+    
+          const proyecto = await projectModel.findOne({ _id: id, clientId: clienteId });
+          if (!proyecto) {
+            return res.status(404).json({ message: "Proyecto no encontrado o no autorizado" });
+          }
+          return res.status(200).json(proyecto);
+        }
+    
+        // Si no se pasa clientId, verificar si el proyecto pertenece a los clientes del usuario
+        const clientes = await clientModel.find({ usuarioId });
+        const clienteIds = clientes.map(c => c._id);
+    
+        const proyecto = await projectModel.findOne({ _id: id, clientId: { $in: clienteIds } });
+        if (!proyecto) {
+          return res.status(404).json({ message: "Proyecto no encontrado o no autorizado" });
+        }
+        return res.status(200).json(proyecto);
+    
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Error al obtener el proyecto" });
       }
-  
-      return res.status(200).json(result);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "Error al obtener el proyecto" });
-    }
-  };
+    };
 
 const deleteProyecto = async (req, res) => {
     const usuarioId = req.user._id;

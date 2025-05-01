@@ -208,9 +208,9 @@ POST http://localhost:3000/api/projects/crearProyecto
 Content-Type: application/json
 
 {
-  "nombre": "Meteoritos calientes",
-  "codigo": "69696969ALFALFA",
-  "projectCode": "1234567880",
+  "nombre": "Meteoritos rojos",
+  "codigo": "69696969NCK",
+  "projectCode": "1234567870",
   "fechaInicio": "2023-10-01",
   "fechaFinal": "2023-10-31",
   "notes": "Proyecto de prueba",
@@ -222,7 +222,7 @@ Content-Type: application/json
     "province": "Madrid"
   },
   "usuarioId": "68124a7726b4f7af870121a5",
-  "clientId": "6812590fa1c02f5cdd12bf94"
+  "clientId": "6812599ea1c02f5cdd12bfa0"
 }
 
 ###
@@ -253,7 +253,12 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
 ###
-GET http://localhost:3000/api/projects/encontrarProyecto/6813610cfc6157722bce11a6
+GET http://localhost:3000/api/projects/listarProyectos?clientId=6812590fa1c02f5cdd12bf94
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
+
+###
+GET http://localhost:3000/api/projects/encontrarProyecto/681364899151d492326012eb
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDk1OTIwLCJleHAiOjE3NDYxMDMxMjB9.ok3WuuOusrZkAfq0bwWsw9gXu_jueP1jC0OrCJxolPM
 
