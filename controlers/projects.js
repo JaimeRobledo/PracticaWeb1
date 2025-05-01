@@ -8,19 +8,22 @@ const crearProyecto = async (req, res) => {
     try {
         const { nombre, codigo, projectCode, fechaInicio, fechaFinal, notes, address, usuarioId, clientId } = req.body
     
-        // Compruebo si ya existe un cliente con ese CIF para ese usuario o su compañía
-        const proyectoExistente = await projectModel.findOne({cif, usuarioId, clientId})
+        const proyectoExistente = await projectModel.findOne({codigo, usuarioId, clientId})
     
         if (proyectoExistente) {
           return res.status(400).json({ message: "El proyecto ya existe para este usuario o cliente" })
         }
     
         const nuevoProyecto = await projectModel.create({
-          nombre,
-          cif,
-          address,
-          usuarioId,
-          clientId
+            nombre,
+            codigo,
+            projectCode,
+            fechaInicio,
+            fechaFinal,
+            notes,
+            address,
+            usuarioId,
+            clientId
         })
     
         await nuevoProyecto.save()
@@ -35,14 +38,10 @@ const crearProyecto = async (req, res) => {
 
 const updateProyecto = async (req, res) => {
     const { id } = req.params
-    const { nombre, cif, address, usuarioId, clientId } = req.body
+    const data = matchedData(req)
   
     try {
-      const proyectoActualizado = await projectModel.findByIdAndUpdate(
-        id,
-        { nombre, cif, address, usuarioId, clientId },
-        { new: true }
-      )
+      const proyectoActualizado = await projectModel.findByIdAndUpdate({ _id: id, usuarioId: req.user._id }, data, { new: true })
   
       if (!proyectoActualizado) {
         return res.status(404).json({ message: "Proyecto no encontrado" })
