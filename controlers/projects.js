@@ -1,14 +1,23 @@
 const projectModel = require('../models/projects.js')
+const clientModel = require('../models/clients.js');
 const { matchedData } = require("express-validator")
 const {encrypt, compare} = require('../utils/validatePassword.js')
 const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
 const { handleHttpError } = require('../utils/handleError.js');
 
+const verificarClienteDelUsuario = async (clientId, usuarioId) => {
+    return await clientModel.findOne({ _id: clientId, usuarioId });
+};
+
 const crearProyecto = async (req, res) => {
     try {
         const { nombre, codigo, projectCode, fechaInicio, fechaFinal, notes, address, usuarioId, clientId } = req.body
     
-        const proyectoExistente = await projectModel.findOne({codigo, usuarioId, clientId})
+        const cliente = await verificarClienteDelUsuario(clientId, usuarioId);
+        console.log("Resultado de verificación:", cliente);
+        if (!cliente) return res.status(403).json({ message: "Cliente no encontrado o no autorizado" });
+
+        const proyectoExistente = await projectModel.findOne({codigo,  clientId})
     
         if (proyectoExistente) {
           return res.status(400).json({ message: "El proyecto ya existe para este usuario o cliente" })
@@ -39,9 +48,14 @@ const crearProyecto = async (req, res) => {
 const updateProyecto = async (req, res) => {
     const { id } = req.params
     const { nombre, codigo, projectCode, fechaInicio, fechaFinal, notes, address, usuarioId, clientId } = req.body
+
   
     try {
-      const proyectoActualizado = await projectModel.findByIdAndUpdate( id, { nombre, codigo, projectCode, fechaInicio, fechaFinal, notes, address, usuarioId, clientId }, { new: true })
+        const cliente = await verificarClienteDelUsuario(clientId, usuarioId);
+        console.log("Resultado de verificación:", cliente);
+        if (!cliente) return res.status(403).json({ message: "Cliente no encontrado o no autorizado" });
+
+      const proyectoActualizado = await projectModel.findByIdAndUpdate( { _id: id, clientId }, { nombre, codigo, projectCode, fechaInicio, fechaFinal, notes, address, usuarioId, clientId }, { new: true })
   
       if (!proyectoActualizado) {
         return res.status(404).json({ message: "Proyecto no encontrado" })
@@ -56,9 +70,14 @@ const updateProyecto = async (req, res) => {
 
   const listarProyectos = async (req, res) => {
     try {
-      const { _id: usuarioId, clientId } = req.user
+        const usuarioId = req.user._id;
+        const { clientId } = req.query;
+
+      const cliente = await verificarClienteDelUsuario(clientId, usuarioId);
+      console.log("Resultado de verificación:", cliente);
+        if (!cliente) return res.status(403).json({ message: "Cliente no autorizado" });
   
-      const result = await projectModel.find({usuarioId, clientId});
+      const result = await projectModel.find({clientId});
   
       return res.status(200).json(result);
     } catch (error) {
@@ -69,10 +88,15 @@ const updateProyecto = async (req, res) => {
 
   const encontrarProyecto = async (req, res) => {
     try {
-      const { _id: usuarioId, clientId } = req.user
-      const { id } = req.params;
+        const usuarioId = req.user._id;
+        const { id } = req.params;
+        const { clientId } = req.query;
+
+      const cliente = await verificarClienteDelUsuario(clientId, usuarioId);
+      console.log("Resultado de verificación:", cliente);
+        if (!cliente) return res.status(403).json({ message: "Cliente no autorizado" });
   
-      const result = await projectModel.findOne({ _id: id, usuarioId, clientId});
+      const result = await projectModel.findOne({ _id: id, clientId});
   
       if (!result) {
         return res.status(404).json({ message: "Proyecto no encontrado o no autorizado" });
@@ -86,21 +110,26 @@ const updateProyecto = async (req, res) => {
   };
 
 const deleteProyecto = async (req, res) => {
-    const { _id: usuarioId } = req.user
-
+    const usuarioId = req.user._id;
     const proyectoId = req.params.id;
+    const { clientId } = req.query;
+
 
     const softDelete = req.query.soft !== "false"
 
+    const cliente = await verificarClienteDelUsuario(clientId, usuarioId);
+    console.log("Resultado de verificación:", cliente);
+    if (!cliente) return res.status(403).json({ message: "Cliente no autorizado" });
+
     if (softDelete) {
-      const proyecto = await projectModel.findOne({ _id: proyectoId, usuarioId });
+      const proyecto = await projectModel.findOne({ _id: proyectoId, clientId  });
       if (!proyecto) return res.status(404).json({ message: "Proyecto no encontrado o no autorizado" });
 
       await proyecto.delete(); // método de mongoose-delete
       return res.status(200).json({ message: "Proyecto desactivado correctamente" });
     }
 
-    const result = await projectModel.deleteOne({ _id: proyectoId, usuarioId });
+    const result = await projectModel.deleteOne({ _id: proyectoId, clientId  });
     if (result.deletedCount === 0) {
       return res.status(404).json({ message: "Proyecto no encontrado o no autorizado para hard delete" });
     }
@@ -111,9 +140,14 @@ const deleteProyecto = async (req, res) => {
 
 const listarArchivados = async (req, res) => {
     try {
-      const { _id: usuarioId, clientId } = req.user
+        const usuarioId = req.user._id;
+        const { clientId } = req.query;
+
+        const cliente = await verificarClienteDelUsuario(clientId, usuarioId);
+        console.log("Resultado de verificación:", cliente);
+        if (!cliente) return res.status(403).json({ message: "Cliente no autorizado" });
     
-        const result = await projectModel.findDeleted({usuarioId, clientId});
+        const result = await projectModel.findDeleted({clientId});
     
         return res.status(200).json(result);
       } catch (error) {
@@ -124,10 +158,15 @@ const listarArchivados = async (req, res) => {
 
 const recuperarProyecto = async (req, res) => {
     try {
-      const { _id: usuarioId, clientId } = req.user
+        const usuarioId = req.user._id;
         const { id } = req.params;
+        const { clientId } = req.query;
+
+        const cliente = await verificarClienteDelUsuario(clientId, usuarioId);
+        console.log("Resultado de verificación:", cliente);
+        if (!cliente) return res.status(403).json({ message: "Cliente no autorizado" });
     
-        const proyecto = await projectModel.findOneWithDeleted({ _id: id, usuarioId, clientId })
+        const proyecto = await projectModel.findOneWithDeleted({ _id: id, clientId })
 
         if (!proyecto) {
             return res.status(404).json({ message: "Proyecto no encontrado o no autorizado" })
