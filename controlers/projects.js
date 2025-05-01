@@ -6,141 +6,141 @@ const { handleHttpError } = require('../utils/handleError.js');
 
 const crearProyecto = async (req, res) => {
     try {
-        const { nombre, cif, address, usuarioId, companiaId } = req.body
+        const { nombre, cif, address, usuarioId, clientId } = req.body
     
         // Compruebo si ya existe un cliente con ese CIF para ese usuario o su compañía
-        const clienteExistente = await clientModel.findOne({cif, usuarioId, companiaId})
+        const proyectoExistente = await projectModel.findOne({cif, usuarioId, clientId})
     
-        if (clienteExistente) {
-          return res.status(400).json({ message: "El cliente ya existe para este usuario o compañía" })
+        if (proyectoExistente) {
+          return res.status(400).json({ message: "El proyecto ya existe para este usuario o cliente" })
         }
     
-        const nuevoCliente = await clientModel.create({
+        const nuevoProyecto = await projectModel.create({
           nombre,
           cif,
           address,
           usuarioId,
-          companiaId
+          clientId
         })
     
-        await nuevoCliente.save()
+        await nuevoProyecto.save()
     
-        return res.status(201).json({ message: "Cliente creado", cliente: nuevoCliente })
+        return res.status(201).json({ message: "Proyecto creado", proyecto: nuevoProyecto })
       } catch (error) {
         console.error(error)
-        return res.status(500).json({ message: "Error al crear el cliente" })
+        return res.status(500).json({ message: "Error al crear el proyecto" })
       }
     
 }
 
 const updateProyecto = async (req, res) => {
     const { id } = req.params
-    const { nombre, cif, address, usuarioId, companiaId } = req.body
+    const { nombre, cif, address, usuarioId, clientId } = req.body
   
     try {
-      const clienteActualizado = await clientModel.findByIdAndUpdate(
+      const proyectoActualizado = await projectModel.findByIdAndUpdate(
         id,
-        { nombre, cif, address, usuarioId, companiaId },
+        { nombre, cif, address, usuarioId, clientId },
         { new: true }
       )
   
-      if (!clienteActualizado) {
-        return res.status(404).json({ message: "Cliente no encontrado" })
+      if (!proyectoActualizado) {
+        return res.status(404).json({ message: "Proyecto no encontrado" })
       }
   
-      return res.status(200).json({ message: "Cliente actualizado", cliente: clienteActualizado })
+      return res.status(200).json({ message: "Proyecto actualizado", proyecto: proyectoActualizado })
     } catch (error) {
       console.error(error)
-      return res.status(500).json({ message: "Error al actualizar el cliente" })
+      return res.status(500).json({ message: "Error al actualizar el proyecto" })
     }
   }
 
   const listarProyectos = async (req, res) => {
     try {
-      const { _id: usuarioId, companiaId } = req.user
+      const { _id: usuarioId, clientId } = req.user
   
-      const result = await clientModel.find({usuarioId, companiaId});
+      const result = await projectModel.find({usuarioId, clientId});
   
       return res.status(200).json(result);
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "Error al obtener los clientes" });
+      return res.status(500).json({ message: "Error al obtener los proyectos" });
     }
   };
 
   const encontrarProyecto = async (req, res) => {
     try {
-      const { _id: usuarioId, companiaId } = req.user
+      const { _id: usuarioId, clientId } = req.user
       const { id } = req.params;
   
-      const result = await clientModel.findOne({ _id: id, usuarioId, companiaId});
+      const result = await projectModel.findOne({ _id: id, usuarioId, clientId});
   
       if (!result) {
-        return res.status(404).json({ message: "Cliente no encontrado o no autorizado" });
+        return res.status(404).json({ message: "Proyecto no encontrado o no autorizado" });
       }
   
       return res.status(200).json(result);
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "Error al obtener el cliente" });
+      return res.status(500).json({ message: "Error al obtener el proyecto" });
     }
   };
 
 const deleteProyecto = async (req, res) => {
     const { _id: usuarioId } = req.user
 
-    const clientId = req.params.id;
+    const proyectoId = req.params.id;
 
     const softDelete = req.query.soft !== "false"
 
     if (softDelete) {
-      const client = await clientModel.findOne({ _id: clientId, usuarioId });
-      if (!client) return res.status(404).json({ message: "Cliente no encontrado o no autorizado" });
+      const proyecto = await projectModel.findOne({ _id: proyectoId, usuarioId });
+      if (!proyecto) return res.status(404).json({ message: "Proyecto no encontrado o no autorizado" });
 
-      await client.delete(); // método de mongoose-delete
-      return res.status(200).json({ message: "Cliente desactivado correctamente" });
+      await proyecto.delete(); // método de mongoose-delete
+      return res.status(200).json({ message: "Proyecto desactivado correctamente" });
     }
 
-    const result = await clientModel.deleteOne({ _id: clientId, usuarioId });
+    const result = await projectModel.deleteOne({ _id: proyectoId, usuarioId });
     if (result.deletedCount === 0) {
-      return res.status(404).json({ message: "Cliente no encontrado o no autorizado para hard delete" });
+      return res.status(404).json({ message: "Proyecto no encontrado o no autorizado para hard delete" });
     }
 
-    return res.status(200).json({ message: "Cliente eliminado correctamente" });
+    return res.status(200).json({ message: "Proyecto eliminado correctamente" });
 
 }
 
 const listarArchivados = async (req, res) => {
     try {
-      const { _id: usuarioId, companiaId } = req.user
+      const { _id: usuarioId, clientId } = req.user
     
-        const result = await clientModel.findDeleted({usuarioId, companiaId});
+        const result = await projectModel.findDeleted({usuarioId, clientId});
     
         return res.status(200).json(result);
       } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: "Error al obtener los clientes archivados" });
+        return res.status(500).json({ message: "Error al obtener los proyectos archivados" });
       }
 }
 
 const recuperarProyecto = async (req, res) => {
     try {
-      const { _id: usuarioId, companiaId } = req.user
+      const { _id: usuarioId, clientId } = req.user
         const { id } = req.params;
     
-        const cliente = await clientModel.findOneWithDeleted({ _id: id, usuarioId, companiaId })
+        const proyecto = await projectModel.findOneWithDeleted({ _id: id, usuarioId, clientId })
 
-        if (!cliente) {
-            return res.status(404).json({ message: "Cliente no encontrado o no autorizado" })
+        if (!proyecto) {
+            return res.status(404).json({ message: "Proyecto no encontrado o no autorizado" })
         }
 
         // Restaurar con mongoose-delete
-        await cliente.restore()
+        await proyecto.restore()
 
-        return res.status(200).json({ message: "Cliente recuperado correctamente" })
+        return res.status(200).json({ message: "Proyecto recuperado correctamente" })
     } catch (error) {
         console.error(error)
-        return res.status(500).json({ message: "Error al recuperar el cliente" })
+        return res.status(500).json({ message: "Error al recuperar el proyecto" })
     }
 }
 

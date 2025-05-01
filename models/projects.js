@@ -52,7 +52,7 @@ const ProjectScheme = new mongoose.Schema(
         ref: 'users',  // Asocia a un usuario
         required: true,
       },
-      companiaId: {
+      clientId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'clients',  // Asocia a clientes 
         required: true,
