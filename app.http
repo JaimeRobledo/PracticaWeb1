@@ -458,3 +458,8 @@ Content-Type: image/jpeg
 
 < ./firma.png
 --boundary123-->
+
+###
+DELETE http://localhost:3000/api/albaranes/borrarAlbaran/681505c1d46ac608b99b8371?soft=true
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjA4MTE3LCJleHAiOjE3NDYyMTUzMTd9.KeZdViYMHmSEeRm33IT6PemUa2fcg1up8J9IFNA8eZg

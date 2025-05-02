@@ -179,4 +179,41 @@ const firmarAlbaran = async (req, res) => {
     }
 }
 
-module.exports = {crearAlbaran, getAlbaranes, getAlbaran, getPdfAlbaran, firmarAlbaran}
+const borrarAlbaran = async (req, res) => {
+    try {
+        const { id } = req.params
+        console.log("ID del albarán:", id)
+
+        const albaran = await albaranModel.findById(id)
+        const softDelete = req.query.soft !== "false"
+        console.log("ID del albarán:", id)
+        console.log("albaran:", albaran)
+
+        if(albaran && albaran.signed === false){
+            if (softDelete) {
+        
+                await albaran.delete(); // método de mongoose-delete
+                return res.status(200).json({ message: "Albaran desactivado correctamente" });
+            }
+        
+            const result = await albaranModel.deleteOne({id});
+            
+            if (result.deletedCount === 0) {
+                return res.status(404).json({ message: "Albaran no encontrado o no autorizado para hard delete" });
+            }
+            return res.status(200).json({ message: "Proyecto eliminado correctamente" });
+
+        }if(albaran && albaran.signed === true){
+            return res.status(404).json({ error: "Albarán esta firmado y no se puede borrar" });
+        }else{
+            return res.status(404).json({ error: "Albarán no encontrado" });
+        }
+        
+    }catch(err) {
+        console.log(err)
+        res.status(500).send("ERROR_UPLOAD_COMPANY_IMAGE")
+        //handleHttpError(res, "ERROR_UPLOAD_COMPANY_IMAGE")
+    }
+}
+
+module.exports = {crearAlbaran, getAlbaranes, getAlbaran, getPdfAlbaran, firmarAlbaran, borrarAlbaran}
