@@ -68,4 +68,8 @@ const getAlbaran = async (req, res) => {
   }
 }
 
-module.exports = {crearAlbaran, getAlbaranes, getAlbaran}
+const getPdfAlbaran = async (req, res) => {
+
+}
+
+module.exports = {crearAlbaran, getAlbaranes, getAlbaran, getPdfAlbaran}
