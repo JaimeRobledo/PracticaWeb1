@@ -4,6 +4,7 @@ const { matchedData } = require("express-validator")
 const {encrypt, compare} = require('../utils/validatePassword.js')
 const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
 const { handleHttpError } = require('../utils/handleError.js');
+const { uploadToPinata } = require( '../utils/handleUploadIPFS.js')
 
 const crearAlbaran = async (req, res) => {
 
