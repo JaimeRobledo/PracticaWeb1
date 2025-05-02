@@ -2,6 +2,7 @@ const userModel = require('../models/users.js')
 const {encrypt, compare} = require('../utils/validatePassword.js')
 const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
 const { handleHttpError } = require('../utils/handleError.js');
+const { uploadToPinata } = require( '../utils/handleUploadIPFS.js')
 
 
 const getItems = async (req, res) => {
@@ -269,7 +270,7 @@ const invitarGuest = async (req, res) => {
 }
 
 const uploadLogo = async (req, res) => {
-    
+    /*
     if (!req.file) {
         return res.status(400).json({ message: "No se ha subido ninguna imagen" });
     }
@@ -293,7 +294,23 @@ const uploadLogo = async (req, res) => {
         { new: true }
     );
 
-    res.status(200).json({ message: "Logo actualizado correctamente", logo: filePath });
+    res.status(200).json({ message: "Logo actualizado correctamente", logo: filePath });*/
+
+    try {
+        const id = req.params.id
+        const fileBuffer = req.file.buffer
+        const fileName = req.file.originalname
+        const pinataResponse = await uploadToPinata(fileBuffer, fileName)
+        const ipfsFile = pinataResponse.IpfsHash
+        const ipfs = `https://${process.env.PINATA_GATEWAY_URL}/ipfs/${ipfsFile}`
+        const data = await userModel.findByIdAndUpdate(req.user._id, { logo: ipfs }, { new: true });
+        
+        return res.status(201).json({message: "Imagen subida correctamente",data})
+    }catch(err) {
+        console.log(err)
+        res.status(500).send("ERROR_UPLOAD_COMPANY_IMAGE")
+        //handleHttpError(res, "ERROR_UPLOAD_COMPANY_IMAGE")
+    }
 };
 
 

@@ -35,12 +35,12 @@ Content-Type: application/json
 ###
 PUT http://localhost:3000/api/users/actualizarDatosPersonales
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNjMzMjg3YzJlMzQ2YWQ4Y2ZmMzciLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDM1NTQ4LCJleHAiOjE3NDYwNDI3NDh9.vJFpjXrkERpwku-xlPs2Jw0tsRSH5rjsoropeMPoCVM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 {
     "nombre": "Jaime",
     "apellidos": "Robledo Sanchez",
-    "nif": "69696970B"
+    "nif": "69696970T"
 }
 
 ###
@@ -124,7 +124,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwM
 ###
 POST http://localhost:3000/api/users/logo 
 Content-Type: multipart/form-data; boundary=boundary123
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYjEwMWU2NmEzZTVlZDUwYjQ3ZDUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQyMDk3LCJleHAiOjE3NDM0NDkyOTd9.X1fh3GqJjYE1pacJo5sxwhJO9qt8DCO0IFrgYIVuMV8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 --boundary123
 Content-Disposition: form-data; name="image"; filename="pengu.jpg"
@@ -138,7 +138,7 @@ Content-Type: image/jpeg
 ###
 POST http://localhost:3000/api/clients/crearCliente
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 {
   "nombre": "Paprika",
@@ -156,7 +156,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 ###
 PUT http://localhost:3000/api/clients/actualizarCliente/6812590fa1c02f5cdd12bf94
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 {
   "nombre": "WINDOWS",
@@ -174,32 +174,32 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 ###
 GET http://localhost:3000/api/clients/listarClientes
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 GET http://localhost:3000/api/clients/encontrarCliente/68134f65ec81bfe5d61f6562
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 DELETE http://localhost:3000/api/clients/borrarCliente/68134f65ec81bfe5d61f6562?soft=true
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 DELETE http://localhost:3000/api/clients/borrarCliente/68134f65ec81bfe5d61f6562?soft=false
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 GET http://localhost:3000/api/clients/listarArchivados
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 PATCH  http://localhost:3000/api/clients/recuperarCliente/68134f65ec81bfe5d61f6562
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 
 //-----------------------------------------------------PROJECTS-----------------------------------------------------//
@@ -208,7 +208,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 ###
 POST http://localhost:3000/api/projects/crearProyecto
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 {
   "nombre": "Meteoritos AMARILLOS",
@@ -231,7 +231,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 ###
 PUT http://localhost:3000/api/projects/actualizarProyecto/68136b21e2de182f7dd50bba
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 {
   "nombre": "Pisos AMARILLOS",
@@ -254,37 +254,37 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 ###
 GET http://localhost:3000/api/projects/listarProyectos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 GET http://localhost:3000/api/projects/listarProyectos?clientId=6812590fa1c02f5cdd12bf94
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 GET http://localhost:3000/api/projects/encontrarProyecto/68135b627d4757e86505dd14
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 DELETE http://localhost:3000/api/projects/borrarProyecto/68135b627d4757e86505dd14?soft=true
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 DELETE http://localhost:3000/api/projects/borrarProyecto/6813610cfc6157722bce11a6?soft=false
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 GET http://localhost:3000/api/projects/listarArchivados
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 PATCH  http://localhost:3000/api/projects/recuperarProyecto/68135b627d4757e86505dd14
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 
 //-----------------------------------------------------ALBARANES-----------------------------------------------------//
@@ -294,7 +294,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 ###
 POST http://localhost:3000/api/albaranes/crearAlbaran
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 {
   "clientId": "6812590fa1c02f5cdd12bf94",
@@ -311,7 +311,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 ###
 POST http://localhost:3000/api/albaranes/crearAlbaran
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 {
   "clientId": "6812590fa1c02f5cdd12bf94",
@@ -328,7 +328,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 ###
 POST http://localhost:3000/api/albaranes/crearAlbaran
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 {
   "clientId": "6812590fa1c02f5cdd12bf94",
@@ -365,7 +365,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 ###
 POST http://localhost:3000/api/albaranes/crearAlbaran
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 {
   "clientId": "6812590fa1c02f5cdd12bf94",
@@ -399,7 +399,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 ###
 POST http://localhost:3000/api/albaranes/crearAlbaran
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 {
   "clientId": "6812590fa1c02f5cdd12bf94",
@@ -430,19 +430,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 ###
 GET http://localhost:3000/api/albaranes/getAlbaranes
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 GET http://localhost:3000/api/albaranes/getAlbaranes?projectId=68135f1aee54df0e8a9d2de0
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 GET http://localhost:3000/api/albaranes/getAlbaran/6814c2b149623c0cf35d7726
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
 
 ###
 GET http://localhost:3000/api/albaranes/getPdfAlbaran/6814c2b149623c0cf35d7726
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk

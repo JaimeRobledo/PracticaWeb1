@@ -56,7 +56,9 @@ const getAlbaran = async (req, res) => {
 
         const albaran = await albaranModel.findById(id).populate('clientId').populate('projectId').populate('userId');
 
-        console.log("Albarán encontrado:", albaran);
+        console.log("---------------------------------------------------------------Albarán user encontrado:", albaran.userId);
+        console.log("---------------------------------------------------------------Albarán project encontrado:", albaran.projectId);
+        console.log("---------------------------------------------------------------Albarán client encontrado:", albaran.clientId);
 
     if (!albaran) {
         return res.status(404).json({ error: "Albarán no encontrado" });
@@ -77,7 +79,7 @@ const getPdfAlbaran = async (req, res) => {
     body.userId = req.user._id;
     const userId = body.userId;
 
-    const albaran = await albaranModel.findById(id, userId).populate('clientId').populate('projectId').populate('userId');
+    const albaran = await albaranModel.findById(id).populate('clientId').populate('projectId').populate('userId');
 
     if(albaran){
 
@@ -100,13 +102,13 @@ const getPdfAlbaran = async (req, res) => {
             nuevoPdf.moveDown();
 
             // Datos usuario
-            nuevoPdf.fontSize(12).text(`Usuario: ${albaran.userId.name || 'Sin nombre'}`);
+            nuevoPdf.fontSize(12).text(`Usuario: ${albaran.userId.nombre +' '+ albaran.userId.apellidos || 'Sin nombre'}`);
             nuevoPdf.text(`Email: ${albaran.userId.email || 'Sin email'}`);
             nuevoPdf.moveDown();
 
             // Datos cliente
-            nuevoPdf.text(`Cliente: ${albaran.clientId.name || 'N/A'}`);
-            nuevoPdf.text(`Proyecto: ${albaran.projectId.name || 'N/A'}`);
+            nuevoPdf.text(`Cliente: ${albaran.clientId.nombre || 'N/A'}`);
+            nuevoPdf.text(`Proyecto: ${albaran.projectId.nombre || 'N/A'}`);
             nuevoPdf.moveDown();
 
             // Detalles del albarán
