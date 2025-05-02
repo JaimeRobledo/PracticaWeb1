@@ -50,14 +50,19 @@ const getAlbaranes = async (req, res) => {
 const getAlbaran = async (req, res) => {
     try {
         const { id } = req.params
-        const albaran = await albaranModel.findById(id)
+        const body = matchedData(req)
+        body.userId = req.user._id;
+        const userId = body.userId
+
+        const albaran = await albaranModel.findById(id).populate('clientId').populate('projectId').populate('userId')
         if (!albaran) {
-            return res.status(404).json({ error: "Albarán no encontrado." });
+            return res.status(404).json({ error: "Albarán no encontrado" });
         }
-        res.status(200).send({data: albaran})
+        return res.status(200).send({data: albaran})
+        
     } catch (e) {
         handleHttpError(res, "ERROR_ALBARAN_GET", 500)
     }
 }
 
-module.exports = {crearAlbaran, getAlbaranes}
+module.exports = {crearAlbaran, getAlbaranes, getAlbaran}

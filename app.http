@@ -436,3 +436,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 GET http://localhost:3000/api/albaranes/getAlbaranes?projectId=68135f1aee54df0e8a9d2de0
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTgxMTEzLCJleHAiOjE3NDYxODgzMTN9.La0CMV4p5ZYw5b-Rp3ZfZnHA7-LNsyZrT-eGZnhnu1M
+
+###
+GET http://localhost:3000/api/albaranes/getAlbaran/6813982cce04fd91f4955985
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTgxMTEzLCJleHAiOjE3NDYxODgzMTN9.La0CMV4p5ZYw5b-Rp3ZfZnHA7-LNsyZrT-eGZnhnu1M
