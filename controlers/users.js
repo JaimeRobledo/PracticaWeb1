@@ -36,6 +36,18 @@ const createItem = async (req, res) => {
 
     const token = tokenSign(result)
 
+    // Enviar el código de validación al correo electrónico del usuariotry {
+
+    const emailData = {
+        subject: "Código de validación",
+        text: "Tu código de validación es: " + codigo_validacion,
+        to: email,              // destinatario desde el token
+        from: process.env.EMAIL     // remitente desde .env
+    };
+
+    const data = await sendEmail(emailData);
+    console.log("Email enviado:", data);
+
     console.log("User creado", result.email, result.role, result.estado, token);
     res.status(201).json({
         email: result.email,
@@ -51,7 +63,6 @@ const createItem = async (req, res) => {
 const validateItem = async (req, res) => {
     console.log("Body recibido:", req.body);
     const {codigo_validacion} = req.body
-    console.log("Codigo de validación recibido:", codigo_validacion)
 
     const user = await userModel.findOne({_id: req.user._id})
     if (!user) {
@@ -62,7 +73,6 @@ const validateItem = async (req, res) => {
         return res.status(400).json({ message: "Usuario ya validado" });
     }
 
-    console.log("Usuario:", user.email, user.codigo_validacion, user.estado)
 
     if (user.codigo_validacion !== codigo_validacion) {
         return res.status(400).json({ message: "Código de validación incorrecto" });
@@ -315,33 +325,7 @@ const uploadLogo = async (req, res) => {
     }
 };
 
-const sendMail = async (req, res) => {
-    try {
-        const info = matchedData(req);
-        const user = await userModel.findById({_id: req.user._id})
-        if (!user) {
-            return res.status(404).json({ message: "Usuario no encontrado" });
-        
-        }
-        console.log("Usuario encontrado:", user.email)
-        const userEmail = user.email; // extraído del token
-
-        const emailData = {
-            subject: info.subject,
-            text: info.text,
-            to: userEmail,              // destinatario desde el token
-            from: process.env.EMAIL     // remitente desde .env
-        };
-
-        const data = await sendEmail(emailData);
-        console.log("Email enviado:", data);
-        res.send(data);
-    } catch (err) {
-        console.log(err);
-        handleHttpError(res, 'ERROR_SEND_EMAIL', 500);
-    }
-}
     
 
 
-module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest, uploadLogo, sendMail }
+module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest, uploadLogo }

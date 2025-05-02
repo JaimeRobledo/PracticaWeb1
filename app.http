@@ -17,10 +17,10 @@ Content-Type: application/json
 
 POST http://localhost:3000/api/users/validate
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNjMzMjg3YzJlMzQ2YWQ4Y2ZmMzciLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MDM1NTA2LCJleHAiOjE3NDYwNDI3MDZ9.bWestbsCrthVaMmSYcfkNP7WIQk9PmS891SCTvS4gaQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE1MzI1NDI0YWIxNzczZGVlZWU4N2UiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjE5NjA0LCJleHAiOjE3NDYyMjY4MDR9.eTG337FeYeQHkPUu_uEeYWHb8NLypwM0dtZlpU4F58s
 
 {
-    "codigo_validacion": "281666"
+    "codigo_validacion": "795432"
 }
 
 ###
@@ -133,15 +133,7 @@ Content-Type: image/jpeg
 < ./pengu.jpg
 --boundary123-->
 
-###
-POST http://localhost:3000/api/users/validateEmail
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE1MjI4NzVlZWZjYmJiMDU2NTIzOGYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjE1NTU5LCJleHAiOjE3NDYyMjI3NTl9.p7yP_FeZ58uKqH9gls8EUZH1jPOyokoRNDkmFPkFRIM
 
-{
-  "subject": "Prueba de email",
-  "text": "Gracias por registrarte en nuestra app"
-}
 
 
 //-----------------------------------------------------CLIENTS-----------------------------------------------------//

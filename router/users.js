@@ -1,5 +1,5 @@
 const express = require('express');
-const {getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest, uploadLogo, sendMail} = require('../controlers/users.js');
+const {getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest, uploadLogo} = require('../controlers/users.js');
 const { validatorRegister, validatorCodigo, validatorLogin, validatorDatosPersonales, validatorDatosCompany, validarGuest} = require('../validators/auth.js');
 const userRouter = express.Router();
 const {authMiddleware} = require('../middleware/authMiddleware.js');
@@ -81,7 +81,6 @@ userRouter.post('/invitar',authMiddleware, validarGuest, invitarGuest);
 
 userRouter.post("/logo",authMiddleware, uploadMiddlewareMemory.single("image"), uploadLogo);
 
-userRouter.post('/validateEmail', authMiddleware, validatorMail, sendMail);
 
 
 module.exports = userRouter;
