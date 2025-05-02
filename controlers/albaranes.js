@@ -76,15 +76,51 @@ const getPdfAlbaran = async (req, res) => {
     body.userId = req.user._id;
     const userId = body.userId;
 
-    const albaran = await albaranModel.findById(id, userId);
+    const albaran = await albaranModel.findById(id, userId).populate('clientId').populate('projectId').populate('userId');
 
     if(albaran){
 
         if(albaran.signed && albaran.pdf != null){
-            const pdfUrl = albaran.pdf;
-            return res.status(200).send({data: pdfUrl});
+            return res.status(200).send({data: albaran.pdf});
         }else{
             //generar pdf
+            const nuevoPdf = new pdfDocument();
+            res.setHeader('Content-Disposition', 'attachment; filename=albaran.pdf');
+            res.setHeader('Content-Type', 'application/pdf');
+
+            nuevoPdf.pipe(res); // enviar directamente como respuesta
+
+            nuevoPdf.fontSize(20).text(`Albarán Nº ${albaran._id}`, { align: 'center' });
+            nuevoPdf.moveDown();
+
+            // Datos usuario
+            nuevoPdf.fontSize(12).text(`Usuario: ${albaran.userId.name || 'Sin nombre'}`);
+            nuevoPdf.text(`Email: ${albaran.userId.email || 'Sin email'}`);
+            nuevoPdf.moveDown();
+
+            // Datos cliente
+            nuevoPdf.text(`Cliente: ${albaran.clientId.name || 'N/A'}`);
+            nuevoPdf.text(`Proyecto: ${albaran.projectId.name || 'N/A'}`);
+            nuevoPdf.moveDown();
+
+            // Detalles del albarán
+            nuevoPdf.text(`Fecha de trabajo: ${new Date(albaran.workdate).toLocaleDateString()}`);
+            nuevoPdf.text(`Formato: ${albaran.format}`);
+            if (albaran.format === 'hours') {
+                nuevoPdf.text(`Horas: ${albaran.hours}`);
+            } else if (albaran.format === 'material') {
+                nuevoPdf.text(`Cantidad: ${albaran.quantity}`);
+            }
+            nuevoPdf.text(`Descripción: ${albaran.description || 'N/A'}`);
+            nuevoPdf.moveDown();
+
+            // Firma (si existe)
+            if (albaran.sign) {
+                nuevoPdf.text('Firma adjunta:');
+                nuevoPdf.image(albaran.sign, { width: 150 }).moveDown();
+            }
+
+            nuevoPdf.end();
         }
 
     }else{
