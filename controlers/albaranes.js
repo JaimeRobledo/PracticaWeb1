@@ -82,10 +82,6 @@ const getPdfAlbaran = async (req, res) => {
     const albaran = await albaranModel.findById(id).populate('clientId').populate('projectId').populate('userId');
 
     if(albaran){
-
-        if(albaran.signed && albaran.pdf != null){
-            return res.status(200).send({data: albaran.pdf});
-        }else{
             
             res.setHeader('Content-Disposition', 'attachment; filename=albaran.pdf');
             res.setHeader('Content-Type', 'application/pdf');
@@ -122,9 +118,18 @@ const getPdfAlbaran = async (req, res) => {
             nuevoPdf.text(`Descripción: ${albaran.description || 'N/A'}`);
             nuevoPdf.moveDown();
 
-            if (albaran.sign) {
+            if (albaran.signed === true && albaran.sign) {
+               /* nuevoPdf.text('Firma adjunta:');
+                const axios = require('axios');
+                const response = await axios.get(albaran.sign, { responseType: 'arraybuffer' })
+                const firma = Buffer.from(response.data, 'binary')
+                nuevoPdf.image(firma, { width: 150 }).moveDown();*/
                 nuevoPdf.text('Firma adjunta:');
-                nuevoPdf.image(albaran.sign, { width: 150 }).moveDown();
+                //sin axios
+                const response = await fetch(albaran.sign);
+                const buffer = await response.buffer();
+                nuevoPdf.image(buffer, { width: 150 }).moveDown();
+
             }
             
             nuevoPdf.on('end', async () => {
@@ -144,7 +149,7 @@ const getPdfAlbaran = async (req, res) => {
                 }
             });
             nuevoPdf.end();
-        }
+        
 
     }else{
         return res.status(404).json({ error: "Albarán no encontrado" });
