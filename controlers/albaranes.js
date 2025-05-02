@@ -84,10 +84,15 @@ const getPdfAlbaran = async (req, res) => {
         if(albaran.signed && albaran.pdf != null){
             return res.status(200).send({data: albaran.pdf});
         }else{
-            //generar pdf
-            const nuevoPdf = new pdfDocument();
+            
             res.setHeader('Content-Disposition', 'attachment; filename=albaran.pdf');
             res.setHeader('Content-Type', 'application/pdf');
+
+            //generar pdf
+            const nuevoPdf = new pdfDocument();
+            const buffers = [];
+        
+            nuevoPdf.on('data', buffer => buffers.push(buffer));
 
             nuevoPdf.pipe(res); // enviar directamente como respuesta
 
@@ -115,12 +120,27 @@ const getPdfAlbaran = async (req, res) => {
             nuevoPdf.text(`Descripción: ${albaran.description || 'N/A'}`);
             nuevoPdf.moveDown();
 
-            // Firma (si existe)
             if (albaran.sign) {
                 nuevoPdf.text('Firma adjunta:');
                 nuevoPdf.image(albaran.sign, { width: 150 }).moveDown();
             }
+            
+            nuevoPdf.on('end', async () => {
+                const pdfBuffer = Buffer.concat(buffers);
+                
+                try {
+                    const uploaded = await uploadToPinata(pdfBuffer, `albaran_${albaran._id}.pdf`);
+                    const pdfUrl = `https://${process.env.PINATA_GATEWAY_URL}/ipfs/${uploaded.IpfsHash}`;
+                    
+                    albaran.pdf = pdfUrl;
+                    await albaran.save();
+                    
+                    console.log("PDF uploaded to Pinata successfully:", pdfUrl);
 
+                } catch (error) {
+                    console.error("Error uploading to Pinata:", error);
+                }
+            });
             nuevoPdf.end();
         }
 

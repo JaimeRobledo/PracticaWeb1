@@ -438,11 +438,11 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
 
 ###
-GET http://localhost:3000/api/albaranes/getAlbaran/6813982cce04fd91f4955985
+GET http://localhost:3000/api/albaranes/getAlbaran/6814c2b149623c0cf35d7726
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
 
 ###
-GET http://localhost:3000/api/albaranes/getPdfAlbaran/6813982cce04fd91f4955985
+GET http://localhost:3000/api/albaranes/getPdfAlbaran/6814c2b149623c0cf35d7726
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MTkwNjQ3LCJleHAiOjE3NDYxOTc4NDd9.2IDZYQadDvzQKfw8Q9XuJeX9qMzbtXSj2q-JOxAwUPs
