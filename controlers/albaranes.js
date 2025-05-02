@@ -5,6 +5,7 @@ const {encrypt, compare} = require('../utils/validatePassword.js')
 const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
 const { handleHttpError } = require('../utils/handleError.js');
 const { uploadToPinata } = require( '../utils/handleUploadIPFS.js')
+const fetch = require('node-fetch');
 
 const crearAlbaran = async (req, res) => {
 
@@ -56,10 +57,6 @@ const getAlbaran = async (req, res) => {
 
         const albaran = await albaranModel.findById(id).populate('clientId').populate('projectId').populate('userId');
 
-        console.log("---------------------------------------------------------------Albarán user encontrado:", albaran.userId);
-        console.log("---------------------------------------------------------------Albarán project encontrado:", albaran.projectId);
-        console.log("---------------------------------------------------------------Albarán client encontrado:", albaran.clientId);
-
     if (!albaran) {
         return res.status(404).json({ error: "Albarán no encontrado" });
     }
@@ -83,7 +80,7 @@ const getPdfAlbaran = async (req, res) => {
 
     if(albaran){
             
-            res.setHeader('Content-Disposition', 'attachment; filename=albaran.pdf');
+            res.setHeader('Content-Disposition', `attachment; filename=albaran_${id}.pdf`);
             res.setHeader('Content-Type', 'application/pdf');
 
             //generar pdf
@@ -119,11 +116,6 @@ const getPdfAlbaran = async (req, res) => {
             nuevoPdf.moveDown();
 
             if (albaran.signed === true && albaran.sign) {
-               /* nuevoPdf.text('Firma adjunta:');
-                const axios = require('axios');
-                const response = await axios.get(albaran.sign, { responseType: 'arraybuffer' })
-                const firma = Buffer.from(response.data, 'binary')
-                nuevoPdf.image(firma, { width: 150 }).moveDown();*/
                 nuevoPdf.text('Firma adjunta:');
                 //sin axios
                 const response = await fetch(albaran.sign);
@@ -149,6 +141,7 @@ const getPdfAlbaran = async (req, res) => {
                 }
             });
             nuevoPdf.end();
+
         
 
     }else{
