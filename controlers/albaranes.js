@@ -27,4 +27,37 @@ const crearAlbaran = async (req, res) => {
     }
 }
 
-module.exports = {crearAlbaran}
+const getAlbaranes = async (req, res) => {
+    try {
+        const body = matchedData(req)
+        body.userId = req.user._id;
+        const userId = body.userId;
+        const projectId = req.query.projectId;
+
+        if(projectId) {
+            const albaranes = await albaranModel.find({ userId, projectId })
+            return res.status(200).send({data: albaranes})
+
+        }else {
+            const albaranes = await albaranModel.find({ userId })
+            return res.status(200).send({data: albaranes})
+        }
+    } catch (e) {
+        handleHttpError(res, "ERROR_ALBARAN_GET", 500)
+    }
+}
+
+const getAlbaran = async (req, res) => {
+    try {
+        const { id } = req.params
+        const albaran = await albaranModel.findById(id)
+        if (!albaran) {
+            return res.status(404).json({ error: "Albarán no encontrado." });
+        }
+        res.status(200).send({data: albaran})
+    } catch (e) {
+        handleHttpError(res, "ERROR_ALBARAN_GET", 500)
+    }
+}
+
+module.exports = {crearAlbaran, getAlbaranes}
