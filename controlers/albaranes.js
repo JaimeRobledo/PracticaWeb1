@@ -152,4 +152,33 @@ const getPdfAlbaran = async (req, res) => {
 
 }
 
-module.exports = {crearAlbaran, getAlbaranes, getAlbaran, getPdfAlbaran}
+const firmarAlbaran = async (req, res) => {
+
+    try {
+        const { id } = req.params
+
+        const albaran = await albaranModel.findById(id)
+
+        if(albaran){
+            const fileBuffer = req.file.buffer
+            const fileName = req.file.originalname
+            const pinataResponse = await uploadToPinata(fileBuffer, fileName)
+            const ipfsFile = pinataResponse.IpfsHash
+            const ipfs = `https://${process.env.PINATA_GATEWAY_URL}/ipfs/${ipfsFile}`
+            const data = await albaranModel.findByIdAndUpdate(id, { sign: ipfs }, { new: true });
+            
+            albaran.signed = true;
+            await albaran.save();
+            return res.status(200).send({data: "Albarán firmado correctamente: ", data});
+        }else{
+            return res.status(404).json({ error: "Albarán no encontrado" });
+        }
+        
+    }catch(err) {
+        console.log(err)
+        res.status(500).send("ERROR_UPLOAD_COMPANY_IMAGE")
+        //handleHttpError(res, "ERROR_UPLOAD_COMPANY_IMAGE")
+    }
+}
+
+module.exports = {crearAlbaran, getAlbaranes, getAlbaran, getPdfAlbaran, firmarAlbaran}

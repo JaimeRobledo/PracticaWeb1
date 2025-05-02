@@ -446,3 +446,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3N
 GET http://localhost:3000/api/albaranes/getPdfAlbaran/6814c2b149623c0cf35d7726
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
+
+###
+POST http://localhost:3000/api/albaranes/firmarAlbaran/6814c2b149623c0cf35d7726
+Content-Type: multipart/form-data; boundary=boundary123
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODEyNGE3NzI2YjRmN2FmODcwMTIxYTUiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjAwNDcyLCJleHAiOjE3NDYyMDc2NzJ9.oeqcDsynwL0d7XelY5jYdBa0YLL6XNqExwxyDvrqMtk
+
+--boundary123
+Content-Disposition: form-data; name="image"; filename="firma.png"
+Content-Type: image/jpeg
+
+< ./firma.png
+--boundary123-->
