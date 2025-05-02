@@ -138,6 +138,11 @@ POST http://localhost:3000/api/users/validateEmail
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE1MjI4NzVlZWZjYmJiMDU2NTIzOGYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjE1NTU5LCJleHAiOjE3NDYyMjI3NTl9.p7yP_FeZ58uKqH9gls8EUZH1jPOyokoRNDkmFPkFRIM
 
+{
+  "subject": "Prueba de email",
+  "text": "Gracias por registrarte en nuestra app"
+}
+
 
 //-----------------------------------------------------CLIENTS-----------------------------------------------------//
 

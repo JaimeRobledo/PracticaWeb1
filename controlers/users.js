@@ -3,7 +3,8 @@ const {encrypt, compare} = require('../utils/validatePassword.js')
 const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
 const { handleHttpError } = require('../utils/handleError.js');
 const { uploadToPinata } = require( '../utils/handleUploadIPFS.js')
-const { sendMail } = require('../utils/handleEmail.js')
+const { matchedData } = require("express-validator")
+const { sendEmail } = require('../utils/handleEmail.js')
 
 
 const getItems = async (req, res) => {
@@ -314,17 +315,33 @@ const uploadLogo = async (req, res) => {
     }
 };
 
-const sendEmail = async (req, res) => {
+const sendMail = async (req, res) => {
     try {
-        const info = matchedData(req)
-        const data = await sendMail(info)
-        res.send(data)
+        const info = matchedData(req);
+        const user = await userModel.findById({_id: req.user._id})
+        if (!user) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        
+        }
+        console.log("Usuario encontrado:", user.email)
+        const userEmail = user.email; // extraído del token
+
+        const emailData = {
+            subject: info.subject,
+            text: info.text,
+            to: userEmail,              // destinatario desde el token
+            from: process.env.EMAIL     // remitente desde .env
+        };
+
+        const data = await sendEmail(emailData);
+        console.log("Email enviado:", data);
+        res.send(data);
     } catch (err) {
-        //console.log(err)
-        handleHttpError(res, 'ERROR_SEND_EMAIL')
+        console.log(err);
+        handleHttpError(res, 'ERROR_SEND_EMAIL', 500);
     }
 }
     
 
 
-module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest, uploadLogo, sendEmail }
+module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest, uploadLogo, sendMail }
