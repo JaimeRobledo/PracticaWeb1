@@ -52,7 +52,7 @@ const AlbaranScheme = new mongoose.Schema(
       company: {
         type: String
       },
-      deleted: {
+      signed: {
         type: Boolean,
         default: false
       },

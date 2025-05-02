@@ -1,4 +1,5 @@
 const albaranModel = require('../models/albaranes.js')
+const pdfDocument = require('pdfkit');
 const { matchedData } = require("express-validator")
 const {encrypt, compare} = require('../utils/validatePassword.js')
 const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
@@ -69,6 +70,26 @@ const getAlbaran = async (req, res) => {
 }
 
 const getPdfAlbaran = async (req, res) => {
+    const { id } = req.params
+    console.log("ID del albarán:", id)
+    const body = matchedData(req)
+    body.userId = req.user._id;
+    const userId = body.userId;
+
+    const albaran = await albaranModel.findById(id, userId);
+
+    if(albaran){
+
+        if(albaran.signed && albaran.pdf != null){
+            const pdfUrl = albaran.pdf;
+            return res.status(200).send({data: pdfUrl});
+        }else{
+            //generar pdf
+        }
+
+    }else{
+        return res.status(404).json({ error: "Albarán no encontrado" });
+    }
 
 }
 
