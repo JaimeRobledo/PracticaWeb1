@@ -6,17 +6,17 @@ const AlbaranScheme = new mongoose.Schema(
     {
       userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'users',
         required: true
       },
       clientId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Client',
+        ref: 'clients',
         required: true
       },
       projectId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Project',
+        ref: 'projects',
         required: true
       },
       format: {
