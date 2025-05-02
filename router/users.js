@@ -1,9 +1,10 @@
 const express = require('express');
-const {getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest, uploadLogo} = require('../controlers/users.js');
+const {getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest, uploadLogo, sendEmail} = require('../controlers/users.js');
 const { validatorRegister, validatorCodigo, validatorLogin, validatorDatosPersonales, validatorDatosCompany, validarGuest} = require('../validators/auth.js');
 const userRouter = express.Router();
 const {authMiddleware} = require('../middleware/authMiddleware.js');
 const { uploadMiddlewareMemory} = require("../utils/handleStorage.js")
+const { validatorMail } = require('../validators/validatorMail.js');
 
 /**
  * @swagger
@@ -79,6 +80,8 @@ userRouter.put('/restablecerPassword',authMiddleware,restablecerPassword);
 userRouter.post('/invitar',authMiddleware, validarGuest, invitarGuest);
 
 userRouter.post("/logo",authMiddleware, uploadMiddlewareMemory.single("image"), uploadLogo);
+
+userRouter.post('/validateEmail', authMiddleware, validatorMail, sendEmail);
 
 
 module.exports = userRouter;

@@ -3,6 +3,7 @@ const {encrypt, compare} = require('../utils/validatePassword.js')
 const {tokenSign, verifyToken} = require('../utils/encargarseJwt.js')
 const { handleHttpError } = require('../utils/handleError.js');
 const { uploadToPinata } = require( '../utils/handleUploadIPFS.js')
+const { sendMail } = require('../utils/handleEmail.js')
 
 
 const getItems = async (req, res) => {
@@ -313,8 +314,17 @@ const uploadLogo = async (req, res) => {
     }
 };
 
-
+const sendEmail = async (req, res) => {
+    try {
+        const info = matchedData(req)
+        const data = await sendMail(info)
+        res.send(data)
+    } catch (err) {
+        //console.log(err)
+        handleHttpError(res, 'ERROR_SEND_EMAIL')
+    }
+}
     
 
 
-module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest, uploadLogo }
+module.exports = { getItems, createItem, validateItem, loginItem, updateDatosPersonales, updateDatosCompany, getPorJWT, deleteUser, recuperarPassword, validarRecuperacion, restablecerPassword, invitarGuest, uploadLogo, sendEmail }
