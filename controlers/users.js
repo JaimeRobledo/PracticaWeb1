@@ -199,11 +199,21 @@ const recuperarPassword = async (req, res) => {
         return res.status(404).json({ message: "Usuario no encontrado" });
     }
 
-    const codigo_recuperacion = Math.floor(100000 + Math.random() * 900000).toString();
-    await  userModel.updateOne({ email: email }, { codigo_validacion: codigo_recuperacion });
+    const codigo_validacion = Math.floor(100000 + Math.random() * 900000).toString();
+    await  userModel.updateOne({ email: email }, { codigo_validacion: codigo_validacion });
     const token = tokenSign(user)
 
-    res.status(200).json({ message: "Código de recuperación enviado a tu email.",codigo_recuperacion, token });
+    const emailData = {
+        subject: "Código de validación",
+        text: "Tu código de validación es: " + codigo_validacion,
+        to: email,              // destinatario desde el token
+        from: process.env.EMAIL     // remitente desde .env
+    };
+
+    const data = await sendEmail(emailData);
+    console.log("Email enviado:", data);
+
+    res.status(200).json({ message: "Código de recuperación enviado a tu email.", token });
 }
 
 const validarRecuperacion = async (req, res) => {
@@ -219,6 +229,7 @@ const validarRecuperacion = async (req, res) => {
     if (user.codigo_validacion !== codigo_validacion) {
         return res.status(400).json({ message: "Código de validación incorrecto" });
     }
+    const token = tokenSign(user)
 
     await user.save()
 
@@ -309,7 +320,6 @@ const uploadLogo = async (req, res) => {
     res.status(200).json({ message: "Logo actualizado correctamente", logo: filePath });*/
 
     try {
-        const id = req.params.id
         const fileBuffer = req.file.buffer
         const fileName = req.file.originalname
         const pinataResponse = await uploadToPinata(fileBuffer, fileName)
