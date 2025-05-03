@@ -43,7 +43,7 @@ const UserScheme = new mongoose.Schema(
     nif:{
         type: String,
         unique: true,
-        sparce: true // Sparce es para que no se repita, pero si no se pone, no da error
+        sparse: true // Sparce es para que no se repita, pero si no se pone, no da error
     },
     logo:{
         type: String,
@@ -59,7 +59,7 @@ const UserScheme = new mongoose.Schema(
         cif: {
             type: String,
             unique: true,
-            sparce: true // Sparce es para que no se repita, pero si no se pone, no da error
+            sparse: true // Sparce es para que no se repita, pero si no se pone, no da error
         },
         address:{
             type: String
