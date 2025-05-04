@@ -167,7 +167,7 @@ const firmarAlbaran = async (req, res) => {
             
             albaran.signed = true;
             await albaran.save();
-            return res.status(200).send({data: "Albarán firmado correctamente: ", data});
+            return res.status(200).send({message: "Albarán firmado correctamente: ", data});
         }else{
             return res.status(404).json({ error: "Albarán no encontrado" });
         }
@@ -186,6 +186,7 @@ const borrarAlbaran = async (req, res) => {
 
         const albaran = await albaranModel.findById(id)
         const softDelete = req.query.soft !== "false"
+
         console.log("ID del albarán:", id)
         console.log("albaran:", albaran)
 
@@ -198,7 +199,7 @@ const borrarAlbaran = async (req, res) => {
         
             const result = await albaranModel.deleteOne({id});
             
-            if (result.deletedCount === 0) {
+            if (!result.deletedCount) {
                 return res.status(404).json({ message: "Albaran no encontrado o no autorizado para hard delete" });
             }
             return res.status(200).json({ message: "Proyecto eliminado correctamente" });
