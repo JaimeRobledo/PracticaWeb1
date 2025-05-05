@@ -8,6 +8,8 @@ app.use(cors())
 app.use(express.json())
 const swaggerUi = require("swagger-ui-express")
 const swaggerSpecs = require("./docs/swagger.js")
+const morganBody = require("morgan-body")
+const {IncomingWebhook} = require("@slack/webhook")
 app.use(express.static("storage")) // http://localhost:3000/file.jpg
 const port = process.env.PORT || 3000
 const server = app.listen(port, () => {
@@ -22,6 +24,14 @@ app.use("/api-documentacion",
 
 app.use("/api", require("./router"))
 
+const loggerStream = require("./utils/handleLogger.js")
 
+morganBody(app, {
+    noColors: true,
+    skip: function(req, res) {
+        return res.statusCode < 400
+    },
+    stream: loggerStream
+})
 
 module.exports = {app, server};
